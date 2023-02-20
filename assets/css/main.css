@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Alte Haas Grotesk', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 25px;
+}
+
+ul.grid {
+    list-style: none;
+}
+
+.unblur {
+    filter: blur(0px);
+    transition: .3s ease filter;
+}
+
+.blur {
+    filter: blur(4px);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+a {
+    font-family: 'Alte Haas Grotesk', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0.5px;
+    display: block;
+}
+
+.text-wrapper>*:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.text-wrapper a {
+    text-decoration: underline;
+}
+
+/* layout */
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+/* header */
+.header-wrapper {
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    padding: 20px;
+}
+
+.header-wrapper h1 {
+    grid-column: 1 / 3;
+}
+
+.header-wrapper nav {
+    grid-column: 3 / 9;
+}
+
+.header-wrapper nav {
+    display: flex;
+}
+
+.header-wrapper>nav>ul {
+    list-style: none;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 25px;
+    align-items: center;
+}
+
+.header-wrapper nav>ul>li:first-child {
+    grid-column: 1 / span 2;
+    grid-row: 1 / 2;
+}
+
+.header-wrapper nav>ul>li:nth-child(2) {
+    grid-column: 3 / span 2;
+    grid-row: 1 / 2;
+}
+
+.header-wrapper nav>ul>li:nth-child(3) {
+    grid-column: 5 / span 2;
+    grid-row: 1 / 2;
+}
+
+.header-wrapper.nav-on-bottom .dropdown ul {
+    bottom: 24px;
+    padding-bottom: 60px;
+}
+
+.header-wrapper:not(.nav-on-bottom) .dropdown ul {
+    padding-top: 60px;
+}
+
+/* blur home page on nav hover */
+header.site-header+.home-page-wrapper main {
+    transition: 1.1s linear filter;
+}
+
+header.site-header:hover+.home-page-wrapper main {
+    filter: blur(80px);
+}
+
+/* toggle bg color on home page */
+.home-layout {
+    background-color: #fff;
+    color: #000;
+    transition: 2s ease background-color, color;
+}
+
+.home-layout.dark {
+    background-color: #000;
+    color: #fff;
+}
+
+/* transitions */
+.layout-enter-active,
+.layout-leave-active {
+    transition: all 0.4s;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+    opacity: 0;
+    filter: blur(1rem);
+}

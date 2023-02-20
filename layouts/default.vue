@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <header>
-      <h1><NuxtLink to="/">Will Warasila</NuxtLink></h1>
-      <SiteNav />
-    </header>
-    <slot />
-    <SiteFooter />
-  </div>
+    <div class="template-projects">
+        <HeaderBasic />
+        <slot />
+    </div>
 </template>
+<style scoped>
+.template-projects {
+    min-height: 100vh
+}
+</style>
