@@ -2,7 +2,7 @@
     <section ref="panel">
         <div class="bts-wrapper">
             <ul class="grid">
-                <li v-for="item in randomImages" :key="_id">
+                <li v-for="item in randomImages" :key="item.id">
                     <NuxtLink :to="`/${item.type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
                         <div v-if="item.img.url" class="image-wrapper">
                             <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
@@ -33,19 +33,20 @@ const query = groq`
 `;
 const { data } = await useSanityQuery(query)
 
-const allItems = computed(() => data.value.map(data => {
-    let slug = data.slug
-    let type = data._type
-    let result = data.bts.map(item => {
-        const result = {
-            slug: slug,
-            type: type,
-            img: item
+const allItems = computed(() => data.value.flatMap(item => {
+    // console.log('item! slug', item.slug.current, 'type', item._type, 'bts list', item.bts)
+    let result = item.bts.map((subItem) => {
+        // console.log('subitem! slug', item.slug.current, 'type', item._type, 'bts img', subItem.url, 'bts caption', subItem.alt)
+        let result = {
+            slug: item.slug,
+            type: item._type,
+            id: item._id,
+            img: subItem
         }
         return result
     })
     return result
-}).flat())
+}))
 
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
@@ -60,8 +61,7 @@ function shuffle(array) {
 
 const randomImages = computed(() => {
     const shuffledArray = shuffle(allItems.value);
-    console.log(allItems.value, shuffledArray)
-    return allItems.value.slice(0, 2)
+    return shuffledArray.slice(0, 2)
 })
 
 const panel = ref();
