@@ -27,7 +27,7 @@ function toggleDropdown(e) {
             <div class="dropdown collapsed" ref="dropdown" @click="(e) => toggleDropdown(e)">
                 <div v-if="props.navType === 'nav1'">
                     <span>Project</span>
-                    <ul v-if="data">
+                    <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav1" :key="item?.slug?.current" class="unblur">
                             <NuxtLink :to="`/${item?._type}/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
                         </li>
@@ -35,7 +35,7 @@ function toggleDropdown(e) {
                 </div>
                 <div v-if="props.navType === 'nav2'">
                     <span>Commissions</span>
-                    <ul v-if="data">
+                    <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav2" :key="item?.slug?.current" class="unblur">
                             <NuxtLink :to="`/${item?._type}/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
                         </li>

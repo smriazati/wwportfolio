@@ -62,5 +62,11 @@ section {
   .column:last-child {
     grid-column: 5 / span 3;
   }
+
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+  }
 }
 </style>

@@ -28,14 +28,6 @@ ul.grid {
     list-style: none;
 }
 
-.unblur {
-    filter: blur(0px);
-    transition: .3s ease filter;
-}
-
-.blur {
-    filter: blur(4px);
-}
 
 h1,
 h2,
@@ -74,50 +66,20 @@ main {
     top: 0;
     left: 0;
     padding: 20px;
-}
-
-.header-wrapper h1 {
-    grid-column: 1 / 3;
-}
-
-.header-wrapper nav {
-    grid-column: 3 / 9;
-}
-
-.header-wrapper nav {
     display: flex;
 }
 
-.header-wrapper>nav>ul {
-    list-style: none;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 25px;
-    align-items: center;
+.header-wrapper.header-wrapper-basic {
+    top: unset;
+    bottom: 0;
 }
 
-.header-wrapper nav>ul>li:first-child {
-    grid-column: 1 / span 2;
-    grid-row: 1 / 2;
-}
-
-.header-wrapper nav>ul>li:nth-child(2) {
-    grid-column: 3 / span 2;
-    grid-row: 1 / 2;
-}
-
-.header-wrapper nav>ul>li:nth-child(3) {
-    grid-column: 5 / span 2;
-    grid-row: 1 / 2;
-}
-
-.header-wrapper.nav-on-bottom .dropdown ul {
+.header-wrapper.header-fixed-bottom .dropdown ul {
     bottom: 24px;
     padding-bottom: 60px;
 }
 
-.header-wrapper:not(.nav-on-bottom) .dropdown ul {
+.header-wrapper:not(.header-fixed-bottom) .dropdown ul {
     padding-top: 60px;
 }
 

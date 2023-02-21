@@ -1,7 +1,7 @@
 <template>
   <div class="home-page-wrapper">
     <Suspense>
-      <div class="home-grid-blur-container unblur">
+      <div class="home-grid-main-blur unblur">
 
         <Head>
           <Title>Home</Title>
@@ -9,7 +9,7 @@
           <Meta name="og:img" :content="data?.seo?.img?.url" />
         </Head>
         <main>
-          <ul v-if="data?.grid" ref="grid" class="grid-wrapper">
+          <ul v-if="data?.grid" ref="grid" class="home-grid-items-blur">
             <li v-for="item in data.grid" v-bind:key="item.slug?.current" :class="`type-${item._type} unblur`"
               :data-title="item.title" :data-location="item.location" @mouseover="(e) => { setActiveProject(e) }"
               @mouseout="e => { clearActiveProject(e) }">
@@ -115,16 +115,6 @@ definePageMeta({
 </script>
 
 <style lang="scss" scoped>
-.home-page-wrapper .grid-wrapper {
-  .unblur {
-    transition: 1s ease filter;
-  }
-
-  .blur {
-    filter: blur(20px);
-  }
-}
-
 .home-page-wrapper {
   padding-top: 80px;
 }

@@ -13,7 +13,7 @@ export default defineNuxtConfig({
       layoutTransition: { name: 'layout', mode: 'out-in' },
       pageTransition: { name: 'layout', mode: 'out-in' }
     },
-    css: ['~/assets/css/fonts.css', '~/assets/css/main.css'],
+    css: ['~/assets/css/fonts.css', '~/assets/css/main.css','~/assets/css/blurs.css'],
     modules: ['@nuxtjs/sanity'],
     image: {
       // Options

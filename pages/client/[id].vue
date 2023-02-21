@@ -2,13 +2,6 @@
   <div>
     <Suspense>
       <div>
-
-        <Head>
-          <Title>{{ data?.title }} - Client Work</Title>
-          <Meta v-if="data?.seo?.shortDesc" name="description" :content="data?.seo?.shortDesc" />
-          <Meta v-if="data?.seo?.img?.url" name="og:img" :content="data?.seo?.img?.url" />
-          <Meta v-else name="og:img" :content="data?.featured?.url" />
-        </Head>
         <header class="client-title-wrapper">
           <h1 v-if="data.title">Selected work <br />for {{ data.title }}</h1>
         </header>
@@ -73,6 +66,28 @@ watchEffect(() => {
   }
 })
 
+const ogImg = computed(() => {
+  if (data?.value?.seo?.img?.url) {
+    return data.value.seo.img.url
+  }
+  if (data?.value?.featured?.url) {
+    return data.value.featured.url
+  }
+  return ''
+})
+const desc = computed(() => {
+  if (data?.value?.seo?.shortDesc) {
+    return data.value.seo.shortDesc
+  }
+  return ''
+})
+useHead({
+  title: data?.value?.title,
+  meta: [
+    { name: 'description', content: desc },
+    { property: 'og:image', content: ogImg }
+  ],
+})
 </script>
 
 <style lang="scss" scoped>

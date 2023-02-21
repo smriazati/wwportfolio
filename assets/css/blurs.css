@@ -1,0 +1,24 @@
+.unblur {
+    filter: blur(0px);
+    transition: .3s ease filter;
+}
+
+.blur {
+    filter: blur(4px);
+}
+
+.home-grid-main-blur.unblur {
+    transition: 1s ease filter;
+}
+
+.home-grid-main-blur.blur {
+    filter: blur(20px);
+}
+
+.home-grid-items-blur.unblur {
+    transition: 1s ease filter;
+}
+
+.home-grid-items-blur.blur {
+    filter: blur(20px);
+}

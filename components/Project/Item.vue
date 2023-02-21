@@ -15,15 +15,15 @@ const props = defineProps(['data'])
             </div>
         </section>
         <section class="featured-image-wrapper">
-            <div class="image-wrapper">
-                <img :src="$urlFor(data?.featured?.url).url()" :alt="data.featured?.alt" />
+            <div v-if="data?.featured?.url" class="image-wrapper">
+                <img :src="$urlFor(data.featured.url).url()" :alt="data.featured?.alt" />
             </div>
         </section>
         <section class="all-images-wrapper">
             <ul>
                 <li v-for="item in data.grid" :key="item._key">
-                    <div class="image-wrapper">
-                        <img :src="$urlFor(item?.img?.url).url()" :alt="item?.img?.alt" />
+                    <div v-if="item?.img?.url" class="image-wrapper">
+                        <img :src="$urlFor(item.img.url).url()" :alt="item.img?.alt" />
                     </div>
                 </li>
             </ul>
@@ -32,6 +32,8 @@ const props = defineProps(['data'])
 </template>
 
 <style lang="scss" scoped>
+$collapse-bp: 800px;
+
 .grid {
     margin-bottom: 80px;
 
@@ -51,6 +53,10 @@ const props = defineProps(['data'])
         grid-column: 1 / span 4;
         grid-row: 2 / 3;
 
+        @media (max-width: $collapse-bp) {
+            grid-column: 1 / span 7;
+        }
+
         .text-wrapper {
             max-width: 453px;
         }
@@ -59,11 +65,21 @@ const props = defineProps(['data'])
     .featured-image-wrapper {
         grid-column: 5 / span 4;
         grid-row: 2 / 3;
+
+        @media (max-width: $collapse-bp) {
+            grid-column: 1 / span 8;
+            grid-row: 3 / 4;
+        }
     }
 
     .all-images-wrapper {
         grid-column: 1 / span 8;
         grid-row: 3 / 4;
+
+        @media (max-width: $collapse-bp) {
+            grid-column: 1 / span 8;
+            grid-row: 4 / 5;
+        }
 
         ul {
             display: flex;

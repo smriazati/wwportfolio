@@ -101,75 +101,67 @@ function clearActiveProject(e) {
 </script>
 
 <style lang="scss">
-.active-project-wrapper {
-  position: fixed;
-  z-index: 100;
-  height: 100vh;
-  width: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
+// .active-project-wrapper {
+//   position: fixed;
+//   z-index: 100;
+//   height: 100vh;
+//   width: 100%;
+//   top: 0;
+//   left: 0;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   pointer-events: none;
 
-  .text-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 100;
+//   .text-wrapper {
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     position: relative;
+//     z-index: 100;
 
-    >*:first-child {
-      text-align: left;
-    }
+//     >*:first-child {
+//       text-align: left;
+//     }
 
-    >*:last-child {
-      text-align: right;
-    }
-  }
+//     >*:last-child {
+//       text-align: right;
+//     }
+//   }
 
-}
-
-.home-page-wrapper {
-  .unblur {
-    transition: 1s ease filter;
-  }
-
-  .blur {
-    filter: blur(20px);
-  }
-}
-
-.home-page-wrapper .masonry-container {
-  position: relative;
-  z-index: 2;
-  list-style: none;
-}
-
-.type-project {
-  width: 50vw;
-}
-
-.type-commission {
-  width: 15vw;
-}
-
-main {
-  margin-top: 80px;
-}
-
-// .grid-container {
-//   min-width: 100%;
-//   max-width: 100vw;
-//   display: grid;
-//   column-gap: 1rem;
-//   grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
-//   grid-auto-rows: auto;
 // }
 
-// .grid-item {
-//   height: fit-content;
+
+
+// .home-page-wrapper .masonry-container {
+//   position: relative;
+//   z-index: 2;
+//   list-style: none;
 // }
+
+// .type-project {
+//   width: 50vw;
+// }
+
+// .type-commission {
+//   width: 15vw;
+// }
+
+// main {
+//   margin-top: 80px;
+// }
+
+// // .grid-container {
+// //   min-width: 100%;
+// //   max-width: 100vw;
+// //   display: grid;
+// //   column-gap: 1rem;
+// //   grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
+// //   grid-auto-rows: auto;
+// // }
+
+// // .grid-item {
+// //   height: fit-content;
+// // }
 </style>
