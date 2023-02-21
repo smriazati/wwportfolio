@@ -5,12 +5,12 @@ const props = defineProps(['data'])
 <template>
     <div class="content-wrapper grid">
         <header class="title-wrapper">
-            <h1 v-if="data.title">{{ data.title }}</h1>
-            <h2 v-if="data.location">{{ data.location }}</h2>
+        <h1 v-if="data.title">{{ data.title }}</h1>
+        <h2 v-if="data.location">{{ data.location }}</h2>
         </header>
-        <section v-if="data.latlng?.lat && data.latlng?.lng" class="weather-wrapper">
-            <ProjectWeather :data="data.latlng" />
-        </section>
+        <!-- <section v-if="data.latlng?.lat && data.latlng?.lng" class="weather-wrapper">
+                <ProjectWeather :data="data.latlng" />
+            </section> -->
         <section class="description-wrapper">
             <div class="text-wrapper">
                 <SanityContent :blocks="data.description?.rte" />
