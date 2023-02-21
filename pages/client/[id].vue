@@ -37,6 +37,7 @@ const projectQuery = `
     "alt": img.asset->altText    }
   },
   slug,
+  latlng,
   title,
   location, 
   description,

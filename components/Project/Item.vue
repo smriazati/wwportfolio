@@ -1,6 +1,5 @@
 <script setup>
 const props = defineProps(['data'])
-
 </script>
 
 <template>
@@ -9,6 +8,9 @@ const props = defineProps(['data'])
             <h1 v-if="data.title">{{ data.title }}</h1>
             <h2 v-if="data.location">{{ data.location }}</h2>
         </header>
+        <section v-if="data.latlng?.lat && data.latlng?.lng" class="weather-wrapper">
+            <ProjectWeather :data="data.latlng" />
+        </section>
         <section class="description-wrapper">
             <div class="text-wrapper">
                 <SanityContent :blocks="data.description?.rte" />
@@ -38,6 +40,7 @@ $collapse-bp: 800px;
     margin-bottom: 80px;
 
     .title-wrapper,
+    .weather-wrapper,
     .description-wrapper,
     .featured-image-wrapper {
         padding: 20px;
@@ -47,6 +50,12 @@ $collapse-bp: 800px;
         grid-column: 1 / span 4;
         grid-row: 1 / 2;
 
+    }
+
+    .weather-wrapper {
+        grid-column: 5 / span 4;
+        grid-row: 1/2;
+        padding-left: 0;
     }
 
     .description-wrapper {

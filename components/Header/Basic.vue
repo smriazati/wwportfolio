@@ -14,7 +14,6 @@ onMounted(() => {
     windowWidth.value = window.innerWidth
     window.addEventListener('resize', () => {
         windowWidth.value = window.innerWidth
-        console.log(windowWidth.value)
     })
 })
 onUnmounted(() => {
