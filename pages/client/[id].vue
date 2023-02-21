@@ -16,7 +16,6 @@
 </template>
 <script setup>
 const route = useRoute()
-const router = useRouter()
 const seoQuery = `
 "seo": {
   "shortDesc": seo.description_short,

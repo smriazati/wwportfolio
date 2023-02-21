@@ -25,16 +25,16 @@ function toggleDropdown(e) {
     <div>
         <Suspense>
             <div class="dropdown collapsed" ref="dropdown" @click="(e) => toggleDropdown(e)">
-                <div v-if="props.navType === 'nav1'">
-                    <span>Project</span>
+                <div v-if="props.navType === 'nav1'" class="dropdown-inner">
+                    <button>Project</button>
                     <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav1" :key="item?.slug?.current" class="unblur">
                             <NuxtLink :to="`/${item?._type}/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
                         </li>
                     </ul>
                 </div>
-                <div v-if="props.navType === 'nav2'">
-                    <span>Commissions</span>
+                <div v-if="props.navType === 'nav2'" class="dropdown-inner">
+                    <button>Commissions</button>
                     <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav2" :key="item?.slug?.current" class="unblur">
                             <NuxtLink :to="`/${item?._type}/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
@@ -48,6 +48,8 @@ function toggleDropdown(e) {
 </template>
 
 <style lang="scss">
+$collapse-bp: 800px;
+
 .dropdown {
     position: relative;
 
@@ -55,11 +57,11 @@ function toggleDropdown(e) {
         cursor: pointer;
     }
 
-    span {
+    button {
         display: flex;
     }
 
-    span:after {
+    button:after {
         content: "-";
         display: flex;
         margin-left: 8px;
@@ -67,7 +69,7 @@ function toggleDropdown(e) {
     }
 
     &.collapsed {
-        span:after {
+        button:after {
             content: "+";
         }
 
@@ -76,8 +78,15 @@ function toggleDropdown(e) {
         }
     }
 
-    ul {
+    .inner-dropdown-container {
         position: absolute;
+    }
+
+    ul {
+        @media (min-width: $collapse-bp) {
+            position: absolute;
+        }
+
         width: 100%;
         list-style: none;
         display: flex;
@@ -86,6 +95,7 @@ function toggleDropdown(e) {
         li {
             white-space: nowrap;
         }
+
     }
 }
 </style>
