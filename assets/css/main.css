@@ -122,11 +122,11 @@ main {
 }
 
 /* blur home page on nav hover */
-header.site-header+.home-page-wrapper main {
+header.site-header+.home-page-wrapper .home-grid-blur-container {
     transition: 1.1s linear filter;
 }
 
-header.site-header:hover+.home-page-wrapper main {
+header.site-header:hover+.home-page-wrapper .home-grid-blur-container {
     filter: blur(80px);
 }
 

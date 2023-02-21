@@ -1,7 +1,7 @@
 <template>
-  <div class="home-page-wrapper unblur">
+  <div class="home-page-wrapper">
     <Suspense>
-      <div>
+      <div class="home-grid-blur-container unblur">
 
         <Head>
           <Title>Home</Title>
@@ -20,12 +20,12 @@
               </NuxtLink>
             </li>
           </ul>
-          <HomeActiveProjectOverlay :title="activeProject.title" :location="activeProject.location">
-          </HomeActiveProjectOverlay>
           <HomeBehindTheScenes></HomeBehindTheScenes>
         </main>
       </div>
     </Suspense>
+    <HomeActiveProjectOverlay :title="activeProject.title" :location="activeProject.location">
+    </HomeActiveProjectOverlay>
 
   </div>
 </template>
@@ -79,8 +79,8 @@ function setActiveProject(e) {
 function clearActiveProject(e) {
   const item = e.target.closest('li');
   removeBlurFromSiblings(item)
-  activeProject.value.title = 'asdfasdf '
-  activeProject.value.location = 'hi'
+  activeProject.value.title = ''
+  activeProject.value.location = ''
 }
 
 
@@ -151,4 +151,5 @@ definePageMeta({
     }
   }
 
-}</style>
+}
+</style>

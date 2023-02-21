@@ -2,7 +2,7 @@
     <section ref="panel">
         <div class="bts-wrapper">
             <ul class="grid">
-                <li v-for="(item, index) in randomImages" v-bind:key="index">
+                <li v-for="item in randomImages" :key="_id">
                     <NuxtLink :to="`/${item.type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
                         <div v-if="item.img.url" class="image-wrapper">
                             <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
@@ -27,7 +27,8 @@ const query = groq`
     "alt": altText
  },
   slug,
-  _type
+  _type,
+  _id
 }
 `;
 const { data } = await useSanityQuery(query)
@@ -58,7 +59,9 @@ function shuffle(array) {
 }
 
 const randomImages = computed(() => {
-    return shuffle(allItems.value).slice(0, 2)
+    const shuffledArray = shuffle(allItems.value);
+    console.log(allItems.value, shuffledArray)
+    return allItems.value.slice(0, 2)
 })
 
 const panel = ref();
