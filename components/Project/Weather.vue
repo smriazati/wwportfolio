@@ -8,7 +8,6 @@
     </div>
 </template>
 <script setup>
-import { ref } from 'vue '
 
 const props = defineProps(['data'])
 const today = new Date().toISOString().split('T')[0]
@@ -39,20 +38,19 @@ const setWindspeedDirection = (radian) => {
         return 'NW'
     }
 }
+if (process.client) {
+    weatherData.value = await fetch(weatherQuery)
+        .then(res => res.json())
+        .then(result => {
+            windspeedDirection.value = setWindspeedDirection(result?.current_weather.winddirection);
+            return result
+        });
 
-
-
-weatherData.value = await fetch(weatherQuery)
-    .then(res => res.json())
-    .then(result => {
-        windspeedDirection.value = setWindspeedDirection(result.current_weather.winddirection);
-        return result
-    });
-
-aqiData.value = await fetch(aqiQuery).then(res => res.json())
-    .then(result => {
-        return result
-    });
+    aqiData.value = await fetch(aqiQuery).then(res => res.json())
+        .then(result => {
+            return result
+        });
+}
 
 
 </script>
