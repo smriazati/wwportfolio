@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-const props = defineProps(['navType'])
+import { ref, onMounted } from 'vue'
 
+const props = defineProps(['navType'])
 const query = groq`
 *[_type == "nav"][0]{
   "nav1": nav1[]->{
@@ -67,8 +67,6 @@ onMounted(() => {
     initHoverFx()
 })
 
-
-
 </script>
 
 <template>
@@ -76,7 +74,7 @@ onMounted(() => {
         <Suspense>
             <div class="dropdown collapsed" ref="dropdown" @click="(e) => toggleDropdown(e)">
                 <div v-if="props.navType === 'nav1'" class="dropdown-inner">
-                    <button>Project</button>
+                    <button>Research</button>
                     <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav1" :key="item?.slug?.current" class="unblur">
                             <NuxtLink :to="`/${item?._type}/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
