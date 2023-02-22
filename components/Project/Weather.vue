@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div v-if="data" class="row">
-            <p>{{ weatherData.current_weather.temperature }} &#8457;</p>
-            <p>{{ weatherData.current_weather.windspeed }} {{ windspeedDirection }} </p>
-            <p>AQI {{ aqiData.hourly.us_aqi[0] }}</p>
+        <div v-if="weatherData || aqiData" class="row">
+            <p v-if="weatherData.current_weather">{{ weatherData.current_weather.temperature }} &#8457;</p>
+            <p v-if="weatherData.current_weather">{{ weatherData.current_weather.windspeed }} {{ windspeedDirection }} </p>
+            <p v-if="aqiData.hourly">AQI {{ aqiData.hourly.us_aqi[0] }}</p>
         </div>
     </div>
 </template>

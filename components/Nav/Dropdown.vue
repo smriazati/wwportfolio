@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, ref } from 'vue';
 const props = defineProps(['navType'])
 
 const query = groq`
@@ -18,6 +19,55 @@ function toggleDropdown(e) {
     if (!parent) return;
     parent.classList.toggle('collapsed')
 }
+
+// blur
+const dropdown = ref(null)
+
+const getSiblings = function (elem) {
+    var siblings = [];
+    var sibling = elem.parentNode.firstChild;
+    while (sibling) {
+        if (sibling.nodeType === 1 && sibling !== elem) {
+            siblings.push(sibling);
+        }
+        sibling = sibling.nextSibling
+    }
+    return siblings;
+};
+const addBlur = (el) => {
+    if (!el) { return }
+    el.classList?.add('blur');
+}
+const removeBlur = (el) => {
+    if (!el) { return }
+    el.classList?.remove('blur');
+}
+
+
+function initHoverFx() {
+    const navItems = dropdown.value?.querySelectorAll('li');
+    if (navItems) {
+        navItems.forEach(item => {
+            const siblings = getSiblings(item)
+            item.addEventListener('mouseover', () => {
+                siblings.forEach(sibling => {
+                    addBlur(sibling)
+                })
+            })
+            item.addEventListener('mouseout', () => {
+                siblings.forEach(sibling => {
+                    removeBlur(sibling)
+                })
+            })
+        })
+    }
+
+}
+onMounted(() => {
+    initHoverFx()
+})
+
+
 
 </script>
 

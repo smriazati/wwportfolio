@@ -35,9 +35,11 @@ const getSiblings = function (elem) {
     return siblings;
 };
 const addBlur = (el) => {
+    if (!el) { return }
     el.classList?.add('blur');
 }
 const removeBlur = (el) => {
+    if (!el) { return }
     el.classList?.remove('blur');
 }
 

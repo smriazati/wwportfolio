@@ -4,12 +4,14 @@
             <ul class="grid">
                 <li v-for="item in randomImages" :key="item.id">
                     <NuxtLink :to="`/${item.type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
-                        <div v-if="item.img.url" class="image-wrapper">
-                            <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
-                        </div>
-                        <div v-if="item.img.alt" class="text-wrapper">
-                            <p>{{ item.img.alt }}</p>
-                        </div>
+                        <figure v-if="item.img">
+                            <div v-if="item.img.url" class="image-wrapper">
+                                <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
+                            </div>
+                            <div class="text-wrapper">
+                                <p>{{ item.img.alt }}</p>
+                            </div>
+                        </figure>
                     </NuxtLink>
                 </li>
             </ul>
@@ -33,21 +35,6 @@ const query = groq`
 `;
 const { data } = await useSanityQuery(query)
 
-const allItems = computed(() => data.value.flatMap(item => {
-    // console.log('item! slug', item.slug.current, 'type', item._type, 'bts list', item.bts)
-    let result = item.bts.map((subItem) => {
-        // console.log('subitem! slug', item.slug.current, 'type', item._type, 'bts img', subItem.url, 'bts caption', subItem.alt)
-        let result = {
-            slug: item.slug,
-            type: item._type,
-            id: item._id,
-            img: subItem
-        }
-        return result
-    })
-    return result
-}))
-
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
@@ -60,8 +47,23 @@ function shuffle(array) {
 }
 
 const randomImages = computed(() => {
-    const shuffledArray = shuffle(allItems.value);
-    return shuffledArray.slice(0, 2)
+
+    const flatList = data.value.flatMap(item => {
+        // console.log('item! slug', item.slug.current, 'type', item._type, 'bts list', item.bts)
+        const listItems = item.bts.map((subItem) => {
+            // console.log('subitem! slug', item.slug.current, 'type', item._type, 'bts img', subItem.url, 'bts caption', subItem.alt)
+            const result = {
+                slug: item.slug,
+                type: item._type,
+                id: item._id,
+                img: subItem
+            }
+            return result
+        })
+        return listItems
+    })
+    const randomImages = shuffle(flatList).slice(0, 2);
+    return randomImages
 })
 
 const panel = ref();
