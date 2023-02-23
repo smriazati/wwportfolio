@@ -13,9 +13,10 @@ img {
     max-width: 100%;
 }
 
-a {
+a,
+a:visited {
     text-decoration: none;
-    color: inherit;
+    color: #000;
 }
 
 nav ul {
@@ -148,7 +149,8 @@ header.site-header:hover+.home-page-wrapper .home-grid-blur-container {
     color: #fff;
 }
 
-.home-layout.dark button {
+.home-layout.dark button,
+.home-layout.dark a {
     color: #fff
 }
 

@@ -8,10 +8,10 @@
                 <li class="parent-dropdown-container dropdown collapsed">
                     <button @click="(e) => toggleDropdown(e)">Projects</button>
                     <ul class="inner-dropdown-container">
-                        <li>
+                        <li class="has-dropdown">
                             <NavDropdown navType="nav1"></NavDropdown>
                         </li>
-                        <li>
+                        <li class="has-dropdown">
                             <NavDropdown navType="nav2"></NavDropdown>
                         </li>
                     </ul>

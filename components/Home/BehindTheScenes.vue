@@ -1,7 +1,7 @@
 <template>
     <section ref="panel">
         <div class="bts-wrapper">
-            <ul class="grid">
+            <ul class="grid" v-if="randomImages">
                 <li v-for="item in randomImages" :key="item.id">
                     <NuxtLink :to="`/${item.type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
                         <figure v-if="item.img">

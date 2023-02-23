@@ -1,7 +1,7 @@
 <template>
   <div class="home-page-wrapper">
     <Suspense>
-      <div class="home-grid-main-blur unblur">
+      <div>
 
         <Head>
           <Title>Home</Title>

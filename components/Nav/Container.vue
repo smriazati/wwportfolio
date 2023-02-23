@@ -5,10 +5,10 @@
         </h1>
         <nav ref="nav">
             <ul class="main-nav">
-                <li class="unblur">
+                <li class="unblur has-dropdown" data-dropdown="nav1">
                     <NavDropdown navType="nav1"></NavDropdown>
                 </li>
-                <li class="unblur">
+                <li class="unblur has-dropdown" data-dropdown="nav2">
                     <NavDropdown navType="nav2"></NavDropdown>
                 </li>
                 <li class="unblur">

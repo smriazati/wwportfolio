@@ -7,18 +7,10 @@
     filter: blur(4px);
 }
 
-.home-grid-main-blur.unblur {
+.home-grid-items-blur .unblur {
     transition: 1s ease filter;
 }
 
-.home-grid-main-blur.blur {
-    filter: blur(20px);
-}
-
-.home-grid-items-blur.unblur {
-    transition: 1s ease filter;
-}
-
-.home-grid-items-blur.blur {
+.home-grid-items-blur .blur {
     filter: blur(20px);
 }
