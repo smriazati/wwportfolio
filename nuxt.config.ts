@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       pageTransition: { name: 'layout', mode: 'out-in' }
     },
     css: ['~/assets/css/fonts.css', '~/assets/css/main.css','~/assets/css/blurs.css'],
-    modules: ['@nuxtjs/sanity'],
+    modules: ['@nuxtjs/sanity','@pinia/nuxt'],
     image: {
       // Options
       sanity: {

@@ -3,7 +3,7 @@
         <div class="bts-wrapper">
             <ul class="grid" v-if="randomImages">
                 <li v-for="item in randomImages" :key="item.id">
-                    <NuxtLink :to="`/${item.type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
+                    <NuxtLink :to="`/project/${item.slug?.current}`">
                         <figure v-if="item.img">
                             <div v-if="item.img.url" class="image-wrapper">
                                 <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />

@@ -1,17 +1,33 @@
-<script setup>
-const props = defineProps(['title', 'location'])
-// console.log(props.title, props.location)
-</script>
-
 <template>
     <section class="active-project-wrapper">
         <div class="text-wrapper">
-            <h2 v-if="props.title">{{ props.title }}</h2>
-            <h3 v-if="props.location">{{ props.location }}</h3>
+            <h2 v-if="title">{{ title }}</h2>
+            <h3 v-if="location">{{ location }}</h3>
         </div>
     </section>
 </template>
 
+<script setup>
+import { useActiveProjectStore } from '@/stores/activeProject'
+
+const activeProjectStore = useActiveProjectStore()
+
+const title = computed(() => {
+    if (activeProjectStore.activeProject?.title) {
+        return activeProjectStore.activeProject?.title
+    } else {
+        return undefined
+    }
+})
+
+const location = computed(() => {
+    if (activeProjectStore.activeProject?.location) {
+        return activeProjectStore.activeProject?.location
+    } else {
+        return undefined
+    }
+})
+</script>
 
 <style lang="scss" scoped>
 section {

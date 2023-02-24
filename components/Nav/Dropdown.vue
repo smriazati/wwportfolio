@@ -3,18 +3,22 @@
         <Suspense>
             <div class="dropdown collapsed" ref="dropdown">
                 <div v-if="props.navType === 'nav1'" class="dropdown-inner">
-                    <button @click="(e) => toggleDropdown(e)">Research</button>
+                    <button @click="(e) => toggleDropdown(e)" @mouseover="setActiveProjectType('research')"
+                        @mouseout="clearActiveProjectType">Research</button>
                     <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav1" :key="item?.slug?.current" class="unblur"
+                            @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject"
                             @click="collapseOtherDropdowns">
-                            <NuxtLink :to="`/${item?._type}/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
+                            <NuxtLink :to="`/project/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
                         </li>
                     </ul>
                 </div>
                 <div v-if="props.navType === 'nav2'" class="dropdown-inner">
-                    <button @click="(e) => toggleDropdown(e)">Commissions</button>
+                    <button @click="(e) => toggleDropdown(e)" @mouseover="setActiveProjectType('commission')"
+                        @mouseout="clearActiveProjectType">Commissions</button>
                     <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav2" :key="item?.slug?.current" class="unblur"
+                            @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject"
                             @click="collapseOtherDropdowns">
                             <NuxtLink :to="`/${item?._type}/${item?.slug?.current}`">{{ item.title }}</NuxtLink>
                         </li>
@@ -27,6 +31,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useActiveProjectStore } from '@/stores/activeProject'
 
 const props = defineProps(['navType'])
 const dropdown = ref(null)
@@ -53,15 +58,32 @@ function toggleDropdown(e) {
 const query = groq`
 *[_type == "nav"][0]{
   "nav1": nav1[]->{
-    _type, title, slug
+    _type, title, slug, location
   },
   "nav2": nav2[]->{
-    _type, title, slug
+    _type, title, slug, location
   }
 }
 `;
 const { data } = await useSanityQuery(query)
 
+const activeProjectStore = useActiveProjectStore()
+
+function setActiveProject(title, location) {
+    activeProjectStore.setActiveProject(title, location)
+}
+
+function clearActiveProject(e) {
+    activeProjectStore.clearActiveProject()
+}
+
+function setActiveProjectType(type) {
+    activeProjectStore.setActiveProjectType(type)
+}
+
+function clearActiveProjectType(e) {
+    activeProjectStore.clearActiveProjectType()
+}
 
 // blur
 
