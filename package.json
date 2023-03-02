@@ -8,7 +8,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.11"
+    "node-sass": "^8.0.0",
+    "nuxt": "3.0.0-rc.11",
+    "sass": "^1.58.1"
   },
   "overrides": {
     "vue": "latest"
@@ -18,8 +20,6 @@
     "@pinia/nuxt": "^0.4.7",
     "@sanity/image-url": "^1.0.1",
     "gsap": "^3.11.4",
-    "pinia": "^2.0.32",
-    "sass": "^1.58.1",
-    "sass-loader": "^13.2.0"
+    "pinia": "^2.0.32"
   }
 }

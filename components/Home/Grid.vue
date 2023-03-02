@@ -56,12 +56,14 @@ const blurredList = ref(null)
 watch(activeProjectStore.activeProject, () => {
     const title = activeProjectStore.activeProject?.title;
     if (title) {
+        if (!grid.value) { return }
         blurredList.value = grid.value.querySelectorAll(`li:not([data-title="${title}"])`);
         if (!blurredList.value) { return }
         blurredList.value.forEach((item) => {
             item.classList.add('blur')
         })
     } else {
+        if (!blurredList.value) { return }
         blurredList.value.forEach((item) => {
             item.classList.remove('blur')
         })
