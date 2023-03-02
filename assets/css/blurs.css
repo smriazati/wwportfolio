@@ -8,9 +8,9 @@
 }
 
 .home-grid-items-blur .unblur {
-    transition: 1s ease filter;
+    transition: 1.3s ease filter;
 }
 
 .home-grid-items-blur .blur {
-    filter: blur(20px);
+    filter: blur(140px);
 }
