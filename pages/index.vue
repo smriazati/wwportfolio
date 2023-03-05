@@ -9,13 +9,13 @@
           <Meta name="og:img" :content="data?.seo?.img?.url" />
         </Head>
         <main>
-          <HomeGrid></HomeGrid>
+          <HomeGridFlex></HomeGridFlex>
           <HomeBehindTheScenes></HomeBehindTheScenes>
         </main>
       </div>
     </Suspense>
-    <HomeActiveProjectOverlay>
-    </HomeActiveProjectOverlay>
+    <!-- <HomeActiveProjectOverlay>
+    </HomeActiveProjectOverlay> -->
 
   </div>
 </template>

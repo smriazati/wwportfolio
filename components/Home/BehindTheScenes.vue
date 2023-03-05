@@ -76,7 +76,7 @@ const toggleBgColor = () => {
 onMounted(() => {
     ScrollTrigger.create({
         trigger: panel.value,
-        start: `top bottom`,
+        start: `top+=300px bottom`,
         // markers: true,
         onToggle: toggleBgColor
     });
@@ -117,6 +117,10 @@ const refreshScrollTrigger = () => {
 
     .text-wrapper {
         margin-top: 20px;
+    }
+
+    img {
+        max-height: 85vh;
     }
 }
 </style>

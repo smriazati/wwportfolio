@@ -3,6 +3,7 @@
     transition: .3s ease filter;
 }
 
+/* 
 .blur {
     filter: blur(4px);
 }
@@ -13,4 +14,4 @@
 
 .home-grid-items-blur .blur {
     filter: blur(140px);
-}
+} */
