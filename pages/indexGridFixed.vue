@@ -14,8 +14,8 @@
                 </main>
             </div>
         </Suspense>
-        <!-- <HomeActiveProjectOverlay>
-    </HomeActiveProjectOverlay> -->
+        <HomeActiveProjectOverlay>
+        </HomeActiveProjectOverlay>
 
     </div>
 </template>
