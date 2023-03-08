@@ -1,22 +1,24 @@
 <template>
-    <section ref="panel">
-        <div class="bts-wrapper">
-            <ul class="grid" v-if="randomImages">
-                <li v-for="item in randomImages" :key="item.id">
-                    <NuxtLink :to="`/project/${item.slug?.current}`">
-                        <figure v-if="item.img">
-                            <div v-if="item.img.url" class="image-wrapper">
-                                <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
-                            </div>
-                            <div class="text-wrapper">
-                                <p>{{ item.img.alt }}</p>
-                            </div>
-                        </figure>
-                    </NuxtLink>
-                </li>
-            </ul>
-        </div>
-    </section>
+    <div>
+        <section ref="panel" v-if="randomImages?.length > 0">
+            <div class="bts-wrapper">
+                <ul class="grid">
+                    <li v-for="item in randomImages" :key="item.id">
+                        <NuxtLink :to="`/project/${item.slug?.current}`">
+                            <figure v-if="item.img">
+                                <div v-if="item.img.url" class="image-wrapper">
+                                    <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
+                                </div>
+                                <div class="text-wrapper">
+                                    <p>{{ item.img.alt }}</p>
+                                </div>
+                            </figure>
+                        </NuxtLink>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
 </template>
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';

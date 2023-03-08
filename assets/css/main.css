@@ -108,7 +108,7 @@ main {
         padding-bottom: 60px;
     }
 
-    .header-wrapper:not(.header-fixed-bottom) .dropdown ul {
+    .header-wrapper:not(.header-fixed-bottom) .dropdown:not(.collapsed) ul {
         padding-top: 60px;
     }
 }

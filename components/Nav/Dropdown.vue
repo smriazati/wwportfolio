@@ -150,7 +150,7 @@ $collapse-bp: 800px;
     }
 
     button:after {
-        content: "-";
+        content: "\2014";
         display: flex;
         margin-left: 8px;
         width: 10px;
@@ -162,7 +162,7 @@ $collapse-bp: 800px;
 
     .dropdown-nav {
         filter: blur(0px);
-        transition: .3s linear filter;
+        transition: .3s linear all;
 
         a {
             font-size: 16px;
@@ -176,8 +176,14 @@ $collapse-bp: 800px;
             filter: blur(50px);
 
             &:hover,
-            a:hover {
+            a:hover,
+            *:hover {
                 cursor: default
+            }
+
+            a {
+                font-size: 0px;
+                line-height: 0px;
             }
         }
 

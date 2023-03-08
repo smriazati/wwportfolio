@@ -116,11 +116,12 @@ ul {
 
         &[data-type="commission"] {
             img {
-                width: 25vw;
-                padding-left: 10%;
+                width: 32vw;
+                padding-left: 25%;
 
                 @media (max-width: $collapse-bp) {
                     width: 35vw;
+                    padding-left: 10%;
                 }
             }
         }
