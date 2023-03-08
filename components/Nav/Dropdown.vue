@@ -30,7 +30,6 @@
     </div>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
 import { useActiveProjectStore } from '@/stores/activeProject'
 
 const props = defineProps(['navType'])
@@ -69,7 +68,9 @@ const { data } = await useSanityQuery(query)
 
 const activeProjectStore = useActiveProjectStore()
 
+const isCollapsed = computed(() => { return dropdown.value.classList.contains('collapsed') })
 function setActiveProject(title, location) {
+    if (isCollapsed) { return }
     activeProjectStore.setActiveProject(title, location)
 }
 
@@ -78,6 +79,7 @@ function clearActiveProject(e) {
 }
 
 function setActiveProjectType(type) {
+    if (isCollapsed) { return }
     activeProjectStore.setActiveProjectType(type)
 }
 
@@ -154,14 +156,35 @@ $collapse-bp: 800px;
         width: 10px;
     }
 
+    .dropdown-inner {
+        overflow: hidden;
+    }
+
+    .dropdown-nav {
+        filter: blur(0px);
+        transition: .3s linear filter;
+
+        a {
+            font-size: 16px;
+            line-height: 19px;
+        }
+    }
+
     &.collapsed {
+        .dropdown-nav {
+            height: 0;
+            filter: blur(50px);
+
+            &:hover,
+            a:hover {
+                cursor: default
+            }
+        }
+
         button:after {
             content: "+";
         }
 
-        ul {
-            display: none;
-        }
     }
 
     .inner-dropdown-container {

@@ -1,29 +1,29 @@
 <template>
     <header>
         <div class="header-wrapper header-wrapper-basic header-fixed-bottom">
-            <NavContainer v-if="isDesktop"></NavContainer>
+            <NavContainer v-if="!isMobile"></NavContainer>
             <NavContainerMobile v-else></NavContainerMobile>
         </div>
     </header>
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
 
-const windowWidth = ref(0)
+const isMobile = ref();
+const checkForMobile = () => {
+    if (window.innerWidth > 800) {
+        isMobile.value = false
+    } else {
+        isMobile.value = true
+    }
+}
 onMounted(() => {
-    windowWidth.value = window.innerWidth
-    window.addEventListener('resize', () => {
-        windowWidth.value = window.innerWidth
-    })
+    checkForMobile();
+    window.addEventListener('resize', checkForMobile)
 })
+
 onUnmounted(() => {
-    window.removeEventListener('resize', () => {
-        windowWidth.value = window.innerWidth
-    })
+    window.removeEventListener('resize', checkForMobile)
 });
 
-const isDesktop = computed(() => {
-    return windowWidth.value >= 800
-})
 
 </script>

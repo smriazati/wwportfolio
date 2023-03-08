@@ -1,7 +1,7 @@
 <template>
   <div>
     <Suspense>
-      <div>
+      <div class="client-page">
         <header class="client-title-wrapper">
           <h1 v-if="data.title">Selected work <br />for {{ data.title }}</h1>
         </header>

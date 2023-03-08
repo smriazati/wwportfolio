@@ -106,13 +106,22 @@ ul {
 
         &[data-type="research"] {
             img {
-                width: 50vw;
+                width: 60vw;
+
+                @media (max-width: $collapse-bp) {
+                    width: 100vw;
+                }
             }
         }
 
         &[data-type="commission"] {
             img {
                 width: 25vw;
+                padding-left: 10%;
+
+                @media (max-width: $collapse-bp) {
+                    width: 35vw;
+                }
             }
         }
 

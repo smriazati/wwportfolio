@@ -23,4 +23,14 @@ export default defineNuxtConfig({
     },
     sanity: {
       projectId: 'qosr5ili'
-    }})
+    },
+    vite: {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            additionalData: '@use "@/assets/css/_vars.scss" as *;'
+          }
+        }
+      }
+    },
+  })

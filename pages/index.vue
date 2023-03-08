@@ -9,18 +9,21 @@
           <Meta name="og:img" :content="data?.seo?.img?.url" />
         </Head>
         <main>
-          <HomeGridFlex></HomeGridFlex>
+          <div ref="grid" class="unblur blur">
+            <HomeGridFlex></HomeGridFlex>
+          </div>
           <HomeBehindTheScenes></HomeBehindTheScenes>
         </main>
       </div>
     </Suspense>
-    <!-- <HomeActiveProjectOverlay>
-    </HomeActiveProjectOverlay> -->
-
+    <HomeActiveProjectOverlay v-if="!isMobile">
+    </HomeActiveProjectOverlay>
   </div>
 </template>
 
 <script setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const seoQuery = `
 "seo": {
@@ -42,10 +45,66 @@ definePageMeta({
   layout: "home"
 });
 
+
+const grid = ref();
+const timer = ref();
+
+const toggleBlur = () => {
+  if (!grid.value) { return }
+  if (!grid.value.classList) { return }
+  if (grid.value.classList.contains('blur')) {
+    grid.value.classList.remove('blur')
+  } else {
+    grid.value.classList.add('blur')
+  }
+}
+onMounted(() => {
+  ScrollTrigger.create({
+    trigger: grid.value,
+    start: `top-=${window.innerHeight / 2}px top`,
+    // markers: true,
+    onToggle: toggleBlur,
+  });
+
+  timer.value = setTimeout(() => {
+    refreshScrollTrigger()
+  }, 100);
+});
+
+onUnmounted(() => {
+  ScrollTrigger.killAll()
+  timer.value = null
+})
+
+const refreshScrollTrigger = () => {
+  ScrollTrigger.refresh()
+}
+
+const isMobile = ref();
+const checkForMobile = () => {
+  if (window.innerWidth > 800) {
+    isMobile.value = false
+  } else {
+    isMobile.value = true
+  }
+}
+onMounted(() => {
+  checkForMobile();
+  window.addEventListener('resize', checkForMobile)
+})
+
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkForMobile)
+});
+
+
+
 </script>
 
 <style lang="scss" scoped>
 .home-page-wrapper {
   padding-top: 80px;
+  margin-top: 50vh;
 }
 </style>

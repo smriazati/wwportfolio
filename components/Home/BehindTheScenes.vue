@@ -76,7 +76,7 @@ const toggleBgColor = () => {
 onMounted(() => {
     ScrollTrigger.create({
         trigger: panel.value,
-        start: `top+=300px bottom`,
+        start: `top+=500px bottom`,
         // markers: true,
         onToggle: toggleBgColor
     });
