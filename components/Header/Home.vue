@@ -1,7 +1,7 @@
 <template>
     <header ref="header" class="site-header">
         <div class="header-wrapper gsap-wrapper">
-            <NavContainer v-if="!isDesktop"></NavContainer>
+            <NavContainer v-if="!isMobile"></NavContainer>
             <NavContainerMobile v-else></NavContainerMobile>
         </div>
     </header>

@@ -3,13 +3,13 @@
         <ul v-if="data?.grid" ref="grid" class="home-grid-items-blur">
             <li v-for="item in data.grid" v-bind:key="item.slug?.current" :class="`type-${item._type} unblur`"
                 :data-title="item.title" :data-location="item.location"
-                :data-type="item.type === 'research' ? 'research' : (item.type === 'commission' ? 'commission' : 'commission')"
-                @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject">
-                <NuxtLink :to="`/${item._type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
-                    <div v-if="item.featured" class="image-wrapper">
-                        <img :src="$urlFor(item.featured?.url).format('webp').url()" :alt="item.img?.alt" loading="lazy" />
-                    </div>
-                </NuxtLink>
+                :data-type="item.type === 'research' ? 'research' : (item.type === 'commission' ? 'commission' : 'commission')">
+                <div v-if="item.featured" class="image-wrapper">
+                    <NuxtLink :to="`/${item._type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
+                        <img :src="$urlFor(item.featured?.url).format('webp').url()" :alt="item.img?.alt" loading="lazy"
+                            @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject" />
+                    </NuxtLink>
+                </div>
             </li>
         </ul>
     </div>
@@ -115,7 +115,7 @@ ul {
         }
 
         &[data-type="commission"] {
-            img {
+            .image-wrapper {
                 width: 32vw;
                 padding-left: 25%;
 
@@ -124,6 +124,14 @@ ul {
                     padding-left: 10%;
                 }
             }
+
+            .image-wrapper::before {
+                content: '';
+                background: green;
+            }
+
+
+
         }
 
 
