@@ -38,24 +38,15 @@ function toggleDropdown(e) {
 <style lang="scss" scoped>
 $collapse-bp: 800px;
 
+
+
+.nav-container {
+    @media (min-width: $collapse-bp) {
+        display: none;
+    }
+}
+
 .grid {
-    // grid-template-columns: repeat(9, 1fr);
-    // grid-gap: 0;
-
-    // >*:first-child {
-    //     grid-column: 1 / span 3;
-    //     align-self: end;
-    // }
-
-    // >*:last-child {
-    //     grid-column: 4 / span 6;
-    // }
-
-    // .main-nav>li:first-child button {
-    //     text-align: center;
-    //     margin-left: auto;
-    //     margin-right: auto;
-    // }
 
     .main-nav li:last-child {
         text-align: right;
@@ -73,13 +64,6 @@ ul.main-nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    align-items: flex-end;
 }
-
-// ul.main-nav {
-//     display: grid;
-//     grid-template-columns: repeat(2, 1fr);
-//     grid-gap: 25px;
-//     width: 100%;
-//     align-items: flex-end;
-// }
 </style>

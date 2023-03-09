@@ -80,6 +80,12 @@ onMounted(() => {
 
 </script>
 <style lang="scss" scoped>
+.nav-container {
+    @media (max-width: $collapse-bp) {
+        display: none;
+    }
+}
+
 .grid {
     width: 100%;
 }

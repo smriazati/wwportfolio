@@ -1,7 +1,7 @@
 <template>
     <header ref="header" class="site-header">
         <div class="header-wrapper gsap-wrapper">
-            <NavContainer v-if="!isMobile"></NavContainer>
+            <NavContainer v-if="isMobile === false"></NavContainer>
             <NavContainerMobile v-else></NavContainerMobile>
         </div>
     </header>
@@ -13,7 +13,7 @@ const header = ref();
 const tl = ref();
 const ctx = ref();
 
-const isMobile = ref();
+const isMobile = ref(false);
 const checkForMobile = () => {
     if (window.innerWidth > 800) {
         isMobile.value = false
