@@ -30,6 +30,7 @@
     </div>
 </template>
 <script setup>
+import { ref, onMounted } from 'vue'
 import { useActiveProjectStore } from '@/stores/activeProject'
 
 const props = defineProps(['navType'])
@@ -68,9 +69,7 @@ const { data } = await useSanityQuery(query)
 
 const activeProjectStore = useActiveProjectStore()
 
-const isCollapsed = computed(() => { return dropdown.value.classList.contains('collapsed') })
 function setActiveProject(title, location) {
-    if (isCollapsed) { return }
     activeProjectStore.setActiveProject(title, location)
 }
 
@@ -79,7 +78,6 @@ function clearActiveProject(e) {
 }
 
 function setActiveProjectType(type) {
-    if (isCollapsed) { return }
     activeProjectStore.setActiveProjectType(type)
 }
 
@@ -138,6 +136,83 @@ onMounted(() => {
 <style lang="scss">
 $collapse-bp: 800px;
 
+body {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    font-family: 'Anton', sans-serif;
+    justify-content: center;
+    align-items: center;
+}
+
+$shooting-time: 3000ms;
+
+.night {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: rotateZ(45deg);
+    // animation: sky 200000ms linear infinite;
+}
+
+.shooting_star {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    // width: 100px;
+    height: 2px;
+    background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+    border-radius: 999px;
+    filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+    animation:
+        tail $shooting-time ease-in-out infinite,
+        shooting $shooting-time ease-in-out infinite;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: calc(50% - 1px);
+        right: 0;
+        // width: 30px;
+        height: 2px;
+        background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+        transform: translateX(50%) rotateZ(45deg);
+        border-radius: 100%;
+        animation: shining $shooting-time ease-in-out infinite;
+    }
+
+    &::after {
+        transform: translateX(50%) rotateZ(-45deg);
+    }
+
+    @for $i from 1 through 20 {
+        &:nth-child(#{$i}) {
+            $delay: random(9999)+0ms;
+            top: calc(50% - #{random(400) - 200px});
+            left: calc(50% - #{random(300) + 0px});
+            animation-delay: $delay;
+            // opacity: random(50) / 100 + 0.5;
+
+            &::before,
+            &::after {
+                animation-delay: $delay;
+            }
+        }
+    }
+}
+
+@keyframes displayFlexToNone {
+    0% {
+        display: flex;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
 .dropdown {
     position: relative;
 
@@ -150,47 +225,37 @@ $collapse-bp: 800px;
     }
 
     button:after {
-        content: "\2014";
+        content: "-";
         display: flex;
         margin-left: 8px;
         width: 10px;
     }
 
-    .dropdown-inner {
-        overflow: hidden;
-    }
-
-    .dropdown-nav {
-        filter: blur(0px);
-        transition: .3s linear all;
-
-        a {
-            font-size: 16px;
-            line-height: 19px;
+    @media (min-width :$collapse-bp) {
+        ul {
+            display: flex;
+            transition: .4s ease-out filter;
+            filter: blur(0px);
         }
     }
 
     &.collapsed {
-        .dropdown-nav {
-            height: 0;
-            filter: blur(50px);
 
-            &:hover,
-            a:hover,
-            *:hover {
-                cursor: default
-            }
-
-            a {
-                font-size: 0px;
-                line-height: 0px;
-            }
-        }
 
         button:after {
             content: "+";
         }
 
+        ul {
+            @media (min-width :$collapse-bp) {
+                filter: blur(50px);
+                display: none;
+            }
+
+            @media (max-width :$collapse-bp) {
+                display: none;
+            }
+        }
     }
 
     .inner-dropdown-container {
