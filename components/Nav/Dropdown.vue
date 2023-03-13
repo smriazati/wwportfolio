@@ -154,30 +154,17 @@ $collapse-bp: 800px;
         width: 10px;
     }
 
-    @media (min-width :$collapse-bp) {
-        ul {
-            display: flex;
-            transition: .4s ease-out filter;
-            filter: blur(0px);
-        }
-    }
+    // @media (min-width :$collapse-bp) {
+    //     ul {
+    //         display: flex;
+    //         transition: .4s ease-out filter;
+    //         filter: blur(0px);
+    //     }
+    // }
 
     &.collapsed {
-
-
         button:after {
             content: "+";
-        }
-
-        ul {
-            @media (min-width :$collapse-bp) {
-                filter: blur(50px);
-                display: none;
-            }
-
-            @media (max-width :$collapse-bp) {
-                display: none;
-            }
         }
     }
 
@@ -199,6 +186,43 @@ $collapse-bp: 800px;
             white-space: nowrap;
         }
 
+    }
+}
+
+// blur in / out 
+
+@media (max-width: $collapse-bp) {
+    .dropdown.collapsed {
+        ul {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: $collapse-bp) {
+
+    .main-nav {
+        position: relative;
+        list-style: none;
+    }
+
+    .main-nav li {
+        cursor: pointer;
+    }
+
+    .main-nav li .dropdown.collapsed ul.dropdown-nav {
+        position: absolute;
+        height: auto;
+        filter: blur(40px);
+        pointer-events: none;
+        transition: filter 0.4s ease-out 0s;
+    }
+
+    .main-nav li .dropdown:not(.collapsed) ul.dropdown-nav {
+        left: auto;
+        pointer-events: auto;
+        filter: blur(0px);
+        transition: filter 0.4s ease-out 0s;
     }
 }
 </style>
