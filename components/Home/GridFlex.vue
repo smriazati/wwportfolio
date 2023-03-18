@@ -6,8 +6,10 @@
                 :data-type="item.type === 'research' ? 'research' : (item.type === 'commission' ? 'commission' : 'commission')">
                 <div v-if="item.featured" class="image-wrapper">
                     <NuxtLink :to="`/${item._type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
-                        <img :src="$urlFor(item.featured?.url).format('webp').url()" :alt="item.img?.alt" loading="lazy"
-                            @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject" />
+                        <div v-if="item.featured?.url">
+                            <img :src="$urlFor(item.featured?.url).format('webp').url()" :alt="item.img?.alt" loading="lazy"
+                                @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject" />
+                        </div>
                     </NuxtLink>
                 </div>
             </li>

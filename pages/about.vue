@@ -21,6 +21,15 @@
   </section>
 </template>
 <script setup>
+import SerializerLink from '../components/Serializer/Link.vue'
+
+const serializers = {
+  marks: {
+    // internalLink: NuxtLink,
+    externalLink: SerializerLink,
+  }
+}
+
 const seoQuery = `
 "seo": {
   "shortDesc": seo.description_short,
@@ -41,17 +50,11 @@ const query = groq`
 `;
 const { data } = useSanityQuery(query);
 
-const serializers = {
-  marks: {
-    externalLink: "a",
-    internalLink: "nuxt-link"
-  },
-};
-
 </script>
 <style lang="scss" scoped>
 section {
   padding: 20px;
+  padding-bottom: 100px;
 }
 
 .grid {
