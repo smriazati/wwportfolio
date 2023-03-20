@@ -214,7 +214,7 @@ $collapse-bp: 800px;
         position: absolute;
         height: auto;
         opacity: 0;
-        filter: blur(90px);
+        filter: blur(200px);
         pointer-events: none;
         transition: filter 0.4s ease-out 0s;
     }
