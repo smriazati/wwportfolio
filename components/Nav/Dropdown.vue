@@ -213,6 +213,7 @@ $collapse-bp: 800px;
     .main-nav li .dropdown.collapsed ul.dropdown-nav {
         position: absolute;
         height: auto;
+        opacity: 0;
         filter: blur(90px);
         pointer-events: none;
         transition: filter 0.4s ease-out 0s;
@@ -222,7 +223,8 @@ $collapse-bp: 800px;
         left: auto;
         pointer-events: auto;
         filter: blur(0px);
-        transition: filter 0.4s ease-out 0s;
+        opacity: 1;
+        transition: filter 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
     }
 }
 </style>

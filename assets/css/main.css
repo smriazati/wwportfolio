@@ -71,7 +71,7 @@ a {
 }
 
 .text-wrapper>*:not(:last-child) {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .text-wrapper a {

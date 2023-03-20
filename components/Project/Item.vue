@@ -104,7 +104,7 @@ $collapse-bp: 800px;
     }
 
     .links-wrapper {
-        margin-top: 15px;
+        margin-top: 25px;
     }
 
     .featured-image-wrapper {
