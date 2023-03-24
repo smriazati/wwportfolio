@@ -178,52 +178,62 @@ $collapse-bp: 800px;
         }
 
         width: 100%;
+
+        @media (max-width: $collapse-bp) {
+            width: 150%;
+        }
+
         list-style: none;
         display: flex;
         flex-direction: column;
+        text-align: left;
 
-        li {
-            white-space: nowrap;
-        }
+    }
+}
 
+.dropdown.collapsed {
+
+    .inner-dropdown-container,
+    .dropdown-nav {
+        display: none;
     }
 }
 
 // blur in / out 
 
-@media (max-width: $collapse-bp) {
-    .dropdown.collapsed {
-        ul {
-            display: none;
-        }
-    }
-}
+// @media (max-width: $collapse-bp) {
+//     .dropdown.collapsed {
+//         ul {
+//             display: none;
+//         }
+//     }
+// }
 
-@media (min-width: $collapse-bp) {
+// @media (min-width: $collapse-bp) {
 
-    .main-nav {
-        position: relative;
-        list-style: none;
-    }
+//     .main-nav {
+//         position: relative;
+//         list-style: none;
+//     }
 
-    .main-nav li {
-        cursor: pointer;
-    }
+//     .main-nav li {
+//         cursor: pointer;
+//     }
 
-    .main-nav li .dropdown.collapsed ul.dropdown-nav {
-        position: absolute;
-        height: auto;
-        filter: blur(200px);
-        pointer-events: none;
-        transition: filter 0.4s ease-out 0s;
-    }
+//     .main-nav li .dropdown.collapsed ul.dropdown-nav {
+//         position: absolute;
+//         height: auto;
+//         filter: blur(200px);
+//         pointer-events: none;
+//         transition: filter 0.4s ease-out 0s;
+//     }
 
-    .main-nav li .dropdown:not(.collapsed) ul.dropdown-nav {
-        left: auto;
-        pointer-events: auto;
-        filter: blur(0px);
-        opacity: 1;
-        transition: filter 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
-    }
-}
+//     .main-nav li .dropdown:not(.collapsed) ul.dropdown-nav {
+//         left: auto;
+//         pointer-events: auto;
+//         filter: blur(0px);
+//         opacity: 1;
+//         transition: filter 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
+//     }
+// }
 </style>

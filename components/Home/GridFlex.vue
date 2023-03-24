@@ -118,7 +118,7 @@ ul {
 
         &[data-type="commission"] {
             .image-wrapper {
-                width: 32vw;
+                width: 25vw;
                 padding-left: 25%;
 
                 @media (max-width: $collapse-bp) {

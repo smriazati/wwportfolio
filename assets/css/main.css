@@ -24,6 +24,7 @@ nav ul {
 }
 
 button {
+    color: #000;
     outline: none;
     border: none;
     font-family: inherit;
@@ -41,6 +42,12 @@ button:hover {
     padding: 8px 19px;
     border: 1px solid #000000;
     border-radius: 14px;
+    filter: blur(0px);
+    transition: .5s ease all;
+}
+
+.btn-fill:hover {
+    filter: blur(4px);
 }
 
 .grid {
@@ -105,11 +112,11 @@ main {
 @media (min-width: 800px) {
     .header-wrapper.header-fixed-bottom .dropdown ul {
         bottom: 24px;
-        padding-bottom: 60px;
+        padding-bottom: 42px;
     }
 
     .header-wrapper:not(.header-fixed-bottom) .dropdown ul {
-        padding-top: 60px;
+        padding-top: 42px;
     }
 }
 

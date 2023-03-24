@@ -106,15 +106,25 @@ const refreshScrollTrigger = () => {
     min-height: 110vh;
     padding: 15vh 20px;
 
-    >*:first-child {
-        grid-column: 1 / span 3;
-        grid-row: 1 / 2;
-    }
+    // >*:first-child {
+    //     grid-column: 1 / span 3;
+    //     grid-row: 1 / 2;
+    // }
 
-    >*:last-child {
-        grid-column: 5 / span 4;
-        grid-row: 1 / 2;
-        place-self: end;
+    // >*:last-child {
+    //     grid-column: 5 / span 4;
+    //     grid-row: 1 / 2;
+    //     place-self: end;
+    // }
+    display: flex;
+    flex-direction: column;
+
+    >* {
+        width: 70vw;
+
+        &:last-child {
+            align-self: end;
+        }
     }
 
     .text-wrapper {

@@ -105,6 +105,6 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .home-page-wrapper {
   padding-top: 80px;
-  margin-top: 50vh;
+  margin-top: 67vh;
 }
 </style>
