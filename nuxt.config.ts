@@ -3,15 +3,14 @@ export default defineNuxtConfig({
     app: {
       head: {
         charset: 'utf-16',
+        link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
         // viewport: 'width=500, initial-scale=1', 
-      }
+      },
+      layoutTransition: { name: 'layout', mode: 'out-in' },
+      pageTransition: { name: 'layout', mode: 'out-in' }
     },
     build: {
       transpile: ['gsap'],
-    },
-    app: {
-      layoutTransition: { name: 'layout', mode: 'out-in' },
-      pageTransition: { name: 'layout', mode: 'out-in' }
     },
     css: ['~/assets/css/fonts.css', '~/assets/css/main.css','~/assets/css/blurs.css'],
     modules: ['@nuxtjs/sanity','@pinia/nuxt'],
