@@ -1,6 +1,10 @@
 .unblur {
     filter: blur(0px);
     transition: .4s ease-out filter;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
 }
 
 

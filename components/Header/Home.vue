@@ -30,10 +30,11 @@ onMounted(() => {
         const els = self.selector('.gsap-wrapper');
         if (!els) { return }
         const headerWrapper = els[0];
+        const headerHeight = 19 + 20 + 20;
         tl.value = gsap
             .timeline()
             .to(headerWrapper, {
-                y: window.innerHeight - headerWrapper.offsetHeight,
+                y: window.innerHeight - headerHeight,
                 scrollTrigger: {
                     trigger: headerWrapper,
                     start: "top top",
