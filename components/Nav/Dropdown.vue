@@ -40,6 +40,7 @@ function collapseOtherDropdowns() {
     const container = dropdown.value.closest('.main-nav')
     if (!container) return
     const expandedDropdowns = container.querySelectorAll('.dropdown:not(.collapsed)');
+    if (!expandedDropdowns) { return }
     if (expandedDropdowns.length > 0) {
         expandedDropdowns.forEach(item => {
             item.classList.add('collapsed')

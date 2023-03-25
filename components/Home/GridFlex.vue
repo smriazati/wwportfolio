@@ -76,12 +76,14 @@ watch(activeProjectStore.activeProject, () => {
 watch(() => activeProjectStore.activeProjectType, () => {
     const type = activeProjectStore.activeProjectType;
     if (type) {
+        if (!grid.value) { return }
         blurredList.value = grid.value.querySelectorAll(`li:not([data-type="${type}"])`);
         if (!blurredList.value) { return }
         blurredList.value.forEach((item) => {
             item.classList.add('blur')
         })
     } else {
+        if (!blurredList.value) { return }
         blurredList.value.forEach((item) => {
             item.classList.remove('blur')
         })
