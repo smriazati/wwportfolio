@@ -1,17 +1,31 @@
 <template>
     <div>
         <ul v-if="data?.grid" ref="grid" class="home-grid-items-blur">
-            <li v-for="item in data.grid" v-bind:key="item.slug?.current" :class="`type-${item._type} unblur`"
-                :data-title="item.title" :data-location="item.location"
-                :data-type="item.type === 'research' ? 'research' : (item.type === 'commission' ? 'commission' : 'commission')">
-                <div v-if="item.featured" class="image-wrapper">
-                    <NuxtLink :to="`/${item._type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
-                        <div v-if="item.featured?.url">
-                            <img :src="$urlFor(item.featured?.url).format('webp').url()" :alt="item.img?.alt" loading="lazy"
-                                @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject" />
+            <li v-for="item in data.grid" v-bind:key="item.item?.slug?.current" :class="`type-${item.item?._type} unblur`"
+                :data-title="item.item?.title" :data-location="item.item?.location"
+                :data-type="item.item?.type === 'research' ? 'research' : (item.item?.type === 'commission' ? 'commission' : 'commission')">
+                <div class="image-wrapper">
+                    <NuxtLink :to="`/${item.item?._type === 'project' ? 'project' : 'client'}/${item.item?.slug?.current}`">
+                        <div @mouseover="setActiveProject(item.item?.title, item.item?.location)"
+                            @mouseout="clearActiveProject">
+                            <div v-if="item.customTnail">
+                                <img :src="$urlFor(item.customTnail?.url).format('webp').url()"
+                                    :alt="item.customTnail?.altText">
+                            </div>
+                            <div v-else-if="item.item?.featured?.url">
+                                <img :src="$urlFor(item.item.featured?.url).format('webp').url()"
+                                    :alt="item.customTnail?.alt">
+                            </div>
+                            <div v-else-if="item.item?.firstProject?.img?.url">
+                                <img :src="$urlFor(item.item?.firstProject?.img?.url).format('webp').url()"
+                                    :alt="item.item?.firstProject?.img?.altText">
+
+                            </div>
                         </div>
+
                     </NuxtLink>
                 </div>
+
             </li>
         </ul>
     </div>
@@ -30,14 +44,20 @@ _type,
 slug,
 location,
 title,
-type
+type,
+"firstProject": projects[0]->{
+     "img": featured.asset->{url, altText}
+}
 `
 
 const query = `
 *[_type == "homePage"]{
-  "grid": grid[].item-> {
-    ${projectQuery}
-  }
+    "grid": grid[]{
+        item->{
+           ${projectQuery}
+        },
+        "customTnail": tnail_custom.asset->{url, altText}
+    }
 }[0]
 `
 const { data } = await useSanityQuery(query);
@@ -106,15 +126,24 @@ ul {
     li {
         padding: 12px;
         margin-bottom: 10vh;
+
+        @media (min-width: $collapse-bp) {
+            margin-bottom: 500px;
+        }
+
         // flex: 0 0 50%;
 
         &[data-type="research"] {
-            img {
-                width: 60vw;
+            width: 60vw;
 
-                @media (max-width: $collapse-bp) {
-                    width: 100vw;
-                }
+            @media (max-width: $collapse-bp) {
+                width: 100vw;
+            }
+
+            img {
+                max-height: 100vh;
+                width: auto;
+
             }
         }
 

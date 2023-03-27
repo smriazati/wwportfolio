@@ -9,7 +9,7 @@
 
 
 .blur {
-    filter: blur(12.5px);
+    filter: blur(1px);
 }
 
 .home-grid-items-blur .unblur {

@@ -197,3 +197,7 @@ main {
     opacity: 0;
     filter: blur(30px);
 }
+
+.content-wrapper .description-wrapper .text-wrapper ul {
+    list-style: none;
+}

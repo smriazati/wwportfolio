@@ -98,8 +98,10 @@ $collapse-bp: 800px;
             grid-column: 1 / span 7;
         }
 
+
         .text-wrapper {
             max-width: 453px;
+
         }
     }
 
@@ -136,12 +138,17 @@ $collapse-bp: 800px;
         margin-top: 335px;
     }
 
+    img {
+        max-height: 100vh;
+    }
+
     .reg-left {
         padding-left: 20px;
         grid-column: 1 / span 4;
     }
 
     .reg-right {
+        text-align: right;
         padding-right: 20px;
         grid-column: 4 / span 5;
     }
