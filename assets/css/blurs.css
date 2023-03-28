@@ -20,8 +20,16 @@
     transition: .4s ease-out filter;
 }
 
-.home-grid-items-blur .blur {
-    filter: blur(200px);
+@media (min-width: 800px) {
+    .home-grid-items-blur .blur {
+        filter: blur(200px);
+    }
+}
+
+@media (max-width: 800px) {
+    .home-grid-items-blur .blur {
+        filter: blur(50px);
+    }
 }
 
 /* blur home page on nav hover */
