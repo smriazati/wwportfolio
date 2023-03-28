@@ -8,12 +8,13 @@
 </template>
 <script setup>
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const header = ref();
 const tl = ref();
 const ctx = ref();
-
 const isMobile = ref(false);
+
 const checkForMobile = () => {
     if (window.innerWidth > 800) {
         isMobile.value = false
@@ -22,10 +23,7 @@ const checkForMobile = () => {
     }
 }
 
-onMounted(() => {
-    checkForMobile();
-    window.addEventListener('resize', checkForMobile)
-
+const initMenuAnimation = () => {
     ctx.value = gsap.context((self) => {
         const els = self.selector('.gsap-wrapper');
         if (!els) { return }
@@ -34,13 +32,14 @@ onMounted(() => {
         tl.value = gsap
             .timeline()
             .to(headerWrapper, {
-                y: window.innerHeight - headerHeight,
+                y: () => window.innerHeight - headerHeight,
                 scrollTrigger: {
                     trigger: headerWrapper,
                     start: "top top",
-                    end: `+=${window.innerHeight / 2}`,
-                    scrub: 1.1,
-                    // markers: true,
+                    end: () => `+=${window.innerHeight / 2}`,
+                    scrub: true,
+                    invalidateOnRefresh: true,
+                    markers: true,
                     onEnter() {
                         headerWrapper.classList.remove('header-fixed-bottom');
                     },
@@ -56,12 +55,19 @@ onMounted(() => {
                 }
             })
     }, header.value);
+}
 
-
+const resizeFunctions = () => {
+    checkForMobile();
+}
+onMounted(() => {
+    checkForMobile();
+    window.addEventListener('resize', resizeFunctions)
+    initMenuAnimation();
 });
 
 onUnmounted(() => {
-    window.removeEventListener('resize', checkForMobile)
+    window.removeEventListener('resize', resizeFunctions)
     ctx.value.revert();
 });
 

@@ -6,11 +6,11 @@
                     <li v-for="item in randomImages" :key="item.id">
                         <NuxtLink :to="`/project/${item.slug?.current}`">
                             <figure v-if="item.img">
-                                <div v-if="item.img.url" class="image-wrapper">
+                                <div v-if="item.img?.url" class="image-wrapper">
                                     <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
                                 </div>
                                 <div class="text-wrapper">
-                                    <p>{{ item.img.alt }}</p>
+                                    <p>{{ item.img?.alt }}</p>
                                 </div>
                             </figure>
                         </NuxtLink>
@@ -133,6 +133,10 @@ const refreshScrollTrigger = () => {
 
     img {
         max-height: 85vh;
+    }
+
+    li:nth-child(even) {
+        text-align: right;
     }
 }
 </style>
