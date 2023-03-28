@@ -12,6 +12,10 @@
     filter: blur(1px);
 }
 
+.home-page-wrapper main>.blur {
+    filter: blur(12px);
+}
+
 .home-grid-items-blur .unblur {
     transition: .4s ease-out filter;
 }

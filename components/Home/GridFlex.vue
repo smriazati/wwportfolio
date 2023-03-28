@@ -9,15 +9,16 @@
                         <div @mouseover="setActiveProject(item.item?.title, item.item?.location)"
                             @mouseout="clearActiveProject">
                             <div v-if="item.customTnail">
-                                <img :src="$urlFor(item.customTnail?.url).format('webp').url()"
+                                <img cross-origin="anonymous" :src="$urlFor(item.customTnail?.url).format('webp').url()"
                                     :alt="item.customTnail?.altText">
                             </div>
                             <div v-else-if="item.item?.featured?.url">
-                                <img :src="$urlFor(item.item.featured?.url).format('webp').url()"
+                                <img cross-origin="anonymous" :src="$urlFor(item.item.featured?.url).format('webp').url()"
                                     :alt="item.customTnail?.alt">
                             </div>
                             <div v-else-if="item.item?.firstProject?.img?.url">
-                                <img :src="$urlFor(item.item?.firstProject?.img?.url).format('webp').url()"
+                                <img cross-origin="anonymous"
+                                    :src="$urlFor(item.item?.firstProject?.img?.url).format('webp').url()"
                                     :alt="item.item?.firstProject?.img?.altText">
 
                             </div>

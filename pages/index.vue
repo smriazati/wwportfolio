@@ -45,7 +45,6 @@ definePageMeta({
   layout: "home"
 });
 
-
 const grid = ref();
 const timer = ref();
 
@@ -58,23 +57,6 @@ const toggleBlur = () => {
     grid.value.classList.add('blur')
   }
 }
-onMounted(() => {
-  ScrollTrigger.create({
-    trigger: grid.value,
-    start: `top-=${window.innerHeight / 2}px top`,
-    // markers: true,
-    onToggle: toggleBlur,
-  });
-
-  timer.value = setTimeout(() => {
-    refreshScrollTrigger()
-  }, 100);
-});
-
-onUnmounted(() => {
-  ScrollTrigger.killAll()
-  timer.value = null
-})
 
 const refreshScrollTrigger = () => {
   ScrollTrigger.refresh()
@@ -88,23 +70,37 @@ const checkForMobile = () => {
     isMobile.value = true
   }
 }
+
 onMounted(() => {
+  ScrollTrigger.create({
+    trigger: grid.value,
+    start: `top+=100px top`,
+    // markers: true,
+    onToggle: toggleBlur,
+  });
+
+  timer.value = setTimeout(() => {
+    refreshScrollTrigger()
+  }, 100);
+
   checkForMobile();
   window.addEventListener('resize', checkForMobile)
-})
 
+});
 
 onUnmounted(() => {
+  ScrollTrigger.killAll()
+  timer.value = null
   window.removeEventListener('resize', checkForMobile)
-});
+
+})
 
 
 
 </script>
 
 <style lang="scss" scoped>
-.home-page-wrapper {
-  padding-top: 80px;
-  margin-top: 67vh;
+.home-page-wrapper>div:first-child {
+  padding-top: 67vh;
 }
 </style>

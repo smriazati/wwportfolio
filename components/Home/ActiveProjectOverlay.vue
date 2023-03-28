@@ -1,7 +1,7 @@
 <template>
     <section class="active-project-wrapper">
         <div class="text-wrapper">
-            <h2 v-if="title">{{ title }}</h2>
+            <h2 v-if="title" class="target">{{ title }}</h2>
             <h3 v-if="location">{{ location }}</h3>
         </div>
     </section>
@@ -9,7 +9,6 @@
 
 <script setup>
 import { useActiveProjectStore } from '@/stores/activeProject'
-
 const activeProjectStore = useActiveProjectStore()
 
 const title = computed(() => {
@@ -42,6 +41,7 @@ section {
     align-items: center;
     pointer-events: none;
     padding: 20px;
+    mix-blend-mode: difference;
 
     .text-wrapper {
         width: 100%;
@@ -50,6 +50,10 @@ section {
         align-items: center;
         position: relative;
         z-index: 100;
+
+        >* {
+            color: #fff;
+        }
 
         >*:first-child {
             text-align: left;
