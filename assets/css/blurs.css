@@ -9,7 +9,7 @@
 
 
 .blur {
-    filter: blur(1px);
+    filter: blur(1.5px);
 }
 
 .home-page-wrapper main>.blur {

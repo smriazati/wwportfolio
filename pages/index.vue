@@ -8,7 +8,7 @@
           <Meta name="description" :content="data?.seo?.shortDesc" />
           <Meta name="og:img" :content="data?.seo?.img?.url" />
         </Head>
-        <main>
+        <main ref="main">
           <div ref="grid" class="unblur blur">
             <HomeGridFlex></HomeGridFlex>
           </div>
@@ -47,6 +47,7 @@ definePageMeta({
 
 const grid = ref();
 const timer = ref();
+const main = ref();
 
 const toggleBlur = () => {
   if (!grid.value) { return }
@@ -72,6 +73,7 @@ const checkForMobile = () => {
 }
 
 onMounted(() => {
+
   ScrollTrigger.create({
     trigger: grid.value,
     start: `top+=100px top`,
@@ -100,7 +102,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.home-page-wrapper>div:first-child {
+.home-page-wrapper main {
   padding-top: 67vh;
 }
 </style>

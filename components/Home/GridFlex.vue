@@ -129,7 +129,7 @@ ul {
         margin-bottom: 10vh;
 
         @media (min-width: $collapse-bp) {
-            margin-bottom: 500px;
+            margin-bottom: 450px;
         }
 
         // flex: 0 0 50%;
