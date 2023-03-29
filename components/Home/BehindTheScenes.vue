@@ -1,16 +1,17 @@
 <template>
     <div>
-        <section ref="panel" v-if="randomImages?.length > 0">
+        <section ref="panel" v-if="hasImages">
             <div class="bts-wrapper">
                 <ul class="grid">
-                    <li v-for="item in randomImages" :key="item.id">
-                        <NuxtLink :to="`/project/${item.slug?.current}`">
-                            <figure v-if="item.img">
-                                <div v-if="item.img?.url" class="image-wrapper">
-                                    <img :src="$urlFor(item.img.url).url()" :alt="item.img.alt" />
+                    <li v-for="index in 2" :key="randomImages[index - 1].id">
+                        <NuxtLink :to="`/project/${randomImages[index - 1].slug?.current}`">
+                            <figure v-if="randomImages[index - 1].img">
+                                <div v-if="randomImages[index - 1].img.url" class="image-wrapper">
+                                    <img :src="$urlFor(randomImages[index - 1].img.url).url()"
+                                        :alt="randomImages[index - 1].img.alt" />
                                 </div>
-                                <div class="text-wrapper">
-                                    <p>{{ item.img?.alt }}</p>
+                                <div v-if="randomImages[index - 1].img.alt" class="text-wrapper">
+                                    <p>{{ randomImages[index - 1].img.alt }}</p>
                                 </div>
                             </figure>
                         </NuxtLink>
@@ -21,7 +22,6 @@
     </div>
 </template>
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const query = groq`
@@ -48,8 +48,15 @@ function shuffle(array) {
     return array;
 }
 
-const randomImages = computed(() => {
+const hasImages = computed(() => {
+    if (randomImages.value.length > 0) {
+        return true;
+    }
+}
+)
 
+const randomImages = ref([]);
+const setRandomImages = () => {
     const flatList = data.value.flatMap(item => {
         // console.log('item! slug', item.slug.current, 'type', item._type, 'bts list', item.bts)
         const listItems = item.bts.map((subItem) => {
@@ -64,9 +71,10 @@ const randomImages = computed(() => {
         })
         return listItems
     })
-    const randomImages = shuffle(flatList).slice(0, 2);
-    return randomImages
-})
+    const justTwoImages = shuffle(flatList).slice(0, 2);
+    randomImages.value = justTwoImages
+}
+setRandomImages();
 
 const panel = ref();
 const timer = ref();

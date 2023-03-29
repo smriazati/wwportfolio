@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header class="site-header">
         <div class="header-wrapper header-wrapper-basic header-fixed-bottom">
             <NavContainer v-if="!isMobile"></NavContainer>
             <NavContainerMobile v-else></NavContainerMobile>

@@ -3,7 +3,8 @@
     <Suspense>
       <div class="client-page">
         <header class="client-title-wrapper">
-          <h1 v-if="data.title">Selected work <br />for {{ data.title }}</h1>
+          <h2>Selected work</h2>
+          <h1 v-if="data.title">{{ data.title }}</h1>
         </header>
         <div>
           <div v-for="(item, index) in data.projects" :key="index" class="project-panel">
@@ -97,5 +98,9 @@ useHead({
 
 .project-panel+.project-panel {
   margin-top: 338px;
+}
+
+h2 {
+  margin-bottom: 0px;
 }
 </style>

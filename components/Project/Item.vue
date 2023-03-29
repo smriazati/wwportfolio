@@ -8,6 +8,11 @@
             <ProjectWeather :data="data.latlng" />
         </section>
         <section class="description-wrapper">
+            <div class="date-wrapper">
+                <div v-if="data.date">
+                    <p>{{ data.date }}</p>
+                </div>
+            </div>
             <div class="text-wrapper">
                 <SanityContent :blocks="data.description?.rte" :serializers="serializers" />
             </div>

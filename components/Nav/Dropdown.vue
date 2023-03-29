@@ -137,6 +137,10 @@ onMounted(() => {
 <style lang="scss">
 $collapse-bp: 800px;
 
+.router-link-exact-active:hover {
+    cursor: default;
+}
+
 .dropdown {
     position: relative;
 

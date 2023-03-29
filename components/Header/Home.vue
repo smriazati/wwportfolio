@@ -39,7 +39,7 @@ const initMenuAnimation = () => {
                     end: () => `+=${window.innerHeight / 2}`,
                     scrub: true,
                     invalidateOnRefresh: true,
-                    markers: true,
+                    // markers: true,
                     onEnter() {
                         headerWrapper.classList.remove('header-fixed-bottom');
                     },

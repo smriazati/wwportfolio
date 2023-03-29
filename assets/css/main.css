@@ -201,3 +201,14 @@ main {
 .content-wrapper .description-wrapper .text-wrapper ul {
     list-style: none;
 }
+
+.site-header {
+    mix-blend-mode: difference;
+    position: relative;
+    z-index: 1111;
+}
+
+.site-header a,
+.site-header button {
+    color: #fff;
+}
