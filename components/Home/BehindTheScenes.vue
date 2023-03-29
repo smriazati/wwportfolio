@@ -3,19 +3,10 @@
         <section ref="panel" v-if="hasImages">
             <div class="bts-wrapper">
                 <ul class="grid">
-                    <li v-for="index in 2" :key="randomImages[index - 1].id">
-                        <NuxtLink :to="`/project/${randomImages[index - 1].slug?.current}`">
-                            <figure v-if="randomImages[index - 1].img">
-                                <div v-if="randomImages[index - 1].img.url" class="image-wrapper">
-                                    <img :src="$urlFor(randomImages[index - 1].img.url).url()"
-                                        :alt="randomImages[index - 1].img.alt" />
-                                </div>
-                                <div v-if="randomImages[index - 1].img.alt" class="text-wrapper">
-                                    <p>{{ randomImages[index - 1].img.alt }}</p>
-                                </div>
-                            </figure>
-                        </NuxtLink>
-                    </li>
+                    <ClientOnly>
+                        <HomeBTSItem v-for="item in randomImages" :key="item.id" :data="item">
+                        </HomeBTSItem>
+                    </ClientOnly>
                 </ul>
             </div>
         </section>
