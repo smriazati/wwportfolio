@@ -122,6 +122,21 @@ $collapse-bp: 800px;
             grid-column: 1 / span 8;
             grid-row: 3 / 4;
         }
+
+        @media (max-height: 500px) {
+            img {
+                max-height: 500px;
+            }
+        }
+
+        @media (min-height: 500px) {
+            text-align: right;
+
+            img {
+                max-height: 100vh;
+            }
+        }
+
     }
 
     .all-images-wrapper {
