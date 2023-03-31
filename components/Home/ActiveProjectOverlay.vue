@@ -51,6 +51,10 @@ section {
         position: relative;
         z-index: 100;
 
+        h2 {
+            font-family: 'Karl', Arial, Helvetica, sans-serif;
+        }
+
         >* {
             color: #fff;
         }
