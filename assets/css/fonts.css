@@ -1,10 +1,16 @@
 @font-face {
-    font-family: 'Alte Haas Grotesk';
-    src: url('~/assets/fonts/AlteHaasGroteskRegular.ttf');
+    font-family: "Karl";
+    src: url('~/assets/fonts/KarlST_Regular.woff2') format('woff2'),
+        url('~/assets/fonts/KarlST_Regular.woff') format('woff'),
+        url('~/assets/fonts/KarlST_Regular.ttf') format('truetype'),
+        url('~/assets/fonts/KarlST_Regular.otf') format('opentype');
 }
 
 @font-face {
-    font-family: 'Alte Haas Grotesk';
-    src: url('~/assets/fonts/AlteHaasGroteskBold.ttf');
-    font-weight: bold;
+    font-family: "Karl Mono";
+    src:
+        url("~/assets/fonts/KarlMonoST_Regular.otf") format("opentype"),
+        url("~/assets/fonts/KarlMonoST_Regular.ttf") format("truetype"),
+        url("~/assets/fonts/KarlMonoST_Regular.woff") format("woff2"),
+        url("~/assets/fonts/KarlMonoST_Regular.woff2") format("woff");
 }

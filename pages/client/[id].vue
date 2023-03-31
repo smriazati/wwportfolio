@@ -94,6 +94,10 @@ useHead({
 <style lang="scss" scoped>
 .client-title-wrapper {
   padding: 20px;
+
+  h2 {
+    font-family: 'Karl Mono', Arial, Helvetica, sans-serif;
+  }
 }
 
 .project-panel+.project-panel {

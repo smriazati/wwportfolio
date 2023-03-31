@@ -83,16 +83,32 @@ $collapse-bp: 800px;
         padding: 20px;
     }
 
+    .featured-image-wrapper {
+        padding-left: 0px;
+    }
+
     .title-wrapper {
         grid-column: 1 / span 4;
         grid-row: 1 / 2;
 
+        h2 {
+            font-family: 'Karl Mono', Arial, Helvetica, sans-serif;
+        }
+    }
+
+    .date-wrapper {
+        margin-bottom: 25px;
+
+        p {
+            font-family: 'Karl Mono', Arial, Helvetica, sans-serif;
+        }
     }
 
     .weather-wrapper {
         grid-column: 5 / span 4;
         grid-row: 1/2;
         padding-left: 0;
+        font-family: 'Karl Mono', Arial, Helvetica, sans-serif;
     }
 
     .description-wrapper {
