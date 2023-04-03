@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="navType">
         <Suspense>
             <div class="dropdown collapsed" ref="dropdown">
                 <div v-if="props.navType === 'nav1'" class="dropdown-inner">
@@ -49,9 +49,14 @@ function collapseOtherDropdowns() {
 }
 
 function toggleDropdown(e) {
-    const parent = e.target.closest('.dropdown');
-    if (!parent) return;
-    parent.classList.toggle('collapsed')
+    const thisDropdown = e.target.closest('.dropdown');
+    if (!thisDropdown) return;
+    thisDropdown.classList.toggle('collapsed')
+
+    const otherDropdown = thisDropdown.closest('li.has-dropdown').previousElementSibling || thisDropdown.closest('li.has-dropdown').nextElementSibling;
+    if (otherDropdown) {
+        otherDropdown.querySelector('.dropdown').classList.add('collapsed')
+    }
 }
 
 // query 
