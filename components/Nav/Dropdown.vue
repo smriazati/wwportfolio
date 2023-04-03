@@ -49,9 +49,6 @@ function collapseOtherDropdowns() {
 }
 
 function toggleDropdown(e) {
-    if (window.innerWidth < 800) {
-        collapseOtherDropdowns()
-    }
     const parent = e.target.closest('.dropdown');
     if (!parent) return;
     parent.classList.toggle('collapsed')
