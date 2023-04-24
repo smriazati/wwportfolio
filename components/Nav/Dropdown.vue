@@ -158,7 +158,7 @@ $collapse-bp: 800px;
     }
 
     button:after {
-        content: "-";
+        content: "\002D";
         display: flex;
         margin-left: 8px;
         width: 10px;

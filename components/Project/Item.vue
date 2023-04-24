@@ -84,7 +84,9 @@ $collapse-bp: 800px;
     }
 
     .featured-image-wrapper {
-        padding-left: 0px;
+        @media (min-width: $collapse-bp) {
+            padding-left: 0px;
+        }
     }
 
     .title-wrapper {

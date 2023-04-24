@@ -37,7 +37,7 @@ const initMenuAnimation = () => {
                     trigger: headerWrapper,
                     start: "top top",
                     end: () => `+=${window.innerHeight / 2}`,
-                    scrub: true,
+                    scrub: 1.1,
                     invalidateOnRefresh: true,
                     // markers: true,
                     onEnter() {

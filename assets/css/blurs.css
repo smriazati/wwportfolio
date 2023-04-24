@@ -40,3 +40,7 @@ header.site-header+.home-page-wrapper .home-grid-blur-container {
 header.site-header:hover+.home-page-wrapper .home-grid-blur-container {
     filter: blur(80px);
 }
+
+.btn-fill:hover {
+    filter: blur(1.5px);
+}
