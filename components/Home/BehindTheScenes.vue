@@ -96,12 +96,11 @@ const refreshScrollTrigger = () => {
     ScrollTrigger.refresh()
 }
 
-
-
 </script>
 
-<style lang="scss" scoped>
-.grid {
+
+<style lang="scss">
+.bts-wrapper .grid {
     min-height: 110vh;
     padding: 15vh 20px;
     display: flex;
