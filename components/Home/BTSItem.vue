@@ -16,11 +16,8 @@
 const props = defineProps(['data'])
 </script>
 <style lang="scss" scoped>
-img {
-    max-height: 85vh;
-
-    @media (min-width: $collapse-bp) {
-        max-width: 75vw;
-    }
+.image-wrapper {
+    max-width: 75vw;
+    // border: 1px solid red;
 }
 </style>
