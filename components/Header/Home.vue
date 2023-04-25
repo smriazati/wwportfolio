@@ -36,6 +36,8 @@ const initMenuAnimation = () => {
                 scrollTrigger: {
                     trigger: headerWrapper,
                     start: "top top",
+                    pin: true,
+                    pinSpacing: false,
                     end: () => `+=${window.innerHeight / 2}`,
                     scrub: 1.1,
                     invalidateOnRefresh: true,
