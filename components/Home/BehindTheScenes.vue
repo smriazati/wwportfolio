@@ -108,6 +108,7 @@ const refreshScrollTrigger = () => {
 
     >* {
         max-width: 70vw;
+        max-height: 100vh;
 
         &:last-child {
             align-self: end;
