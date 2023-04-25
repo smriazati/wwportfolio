@@ -104,17 +104,6 @@ const refreshScrollTrigger = () => {
 .grid {
     min-height: 110vh;
     padding: 15vh 20px;
-
-    // >*:first-child {
-    //     grid-column: 1 / span 3;
-    //     grid-row: 1 / 2;
-    // }
-
-    // >*:last-child {
-    //     grid-column: 5 / span 4;
-    //     grid-row: 1 / 2;
-    //     place-self: end;
-    // }
     display: flex;
     flex-direction: column;
 
@@ -130,13 +119,6 @@ const refreshScrollTrigger = () => {
         margin-top: 20px;
     }
 
-    img {
-        max-height: 85vh;
-
-        @media (min-width: $collapse-bp) {
-            max-width: 75vw;
-        }
-    }
 
     li:nth-child(even) {
         text-align: right;
