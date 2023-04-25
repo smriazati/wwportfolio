@@ -124,8 +124,4 @@ const refreshScrollTrigger = () => {
         text-align: right;
     }
 }
-
-ul li {
-    flex: 0 0 75vw;
-}
 </style>

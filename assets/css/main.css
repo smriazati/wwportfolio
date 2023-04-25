@@ -236,3 +236,7 @@ main {
 .text-wrapper ul {
     list-style: none;
 }
+
+.bts-wrapper ul li {
+    flex: 0 0 75vw;
+}
