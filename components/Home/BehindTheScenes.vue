@@ -119,7 +119,7 @@ const refreshScrollTrigger = () => {
     flex-direction: column;
 
     >* {
-        width: 70vw;
+        max-width: 70vw;
 
         &:last-child {
             align-self: end;
@@ -132,6 +132,10 @@ const refreshScrollTrigger = () => {
 
     img {
         max-height: 85vh;
+
+        @media (min-width: $collapse-bp) {
+            max-width: 75vw;
+        }
     }
 
     li:nth-child(even) {
