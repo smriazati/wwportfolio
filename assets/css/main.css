@@ -100,7 +100,7 @@ a {
     margin-bottom: 20px;
 }
 
-.text-wrapper a {
+.text-wrapper a:not(.btn-fill) {
     text-decoration: underline;
 }
 
@@ -140,7 +140,7 @@ main {
 @media (min-width: 800px) {
     .header-wrapper.header-fixed-bottom .dropdown ul {
         bottom: 24px;
-        padding-bottom: 42px;
+        padding-bottom: 24px;
     }
 
     .header-wrapper:not(.header-fixed-bottom) .dropdown ul {
@@ -235,4 +235,13 @@ main {
 
 .text-wrapper ul {
     list-style: none;
+}
+
+.template-projects .description-wrapper>*:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.template-about ul li {
+    padding-left: 22px;
+    text-indent: -22px;
 }

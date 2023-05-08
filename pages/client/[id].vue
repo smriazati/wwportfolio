@@ -40,6 +40,9 @@ const projectQuery = `
   slug,
   latlng,
   title,
+  dateRange,
+  press,
+  links,
   location, 
   description,
   type

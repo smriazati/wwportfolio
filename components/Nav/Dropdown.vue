@@ -4,7 +4,7 @@
             <div class="dropdown collapsed" ref="dropdown">
                 <div v-if="props.navType === 'nav1'" class="dropdown-inner">
                     <button @click="(e) => toggleDropdown(e)" @mouseover="setActiveProjectType('research')"
-                        @mouseout="clearActiveProjectType">Research</button>
+                        @mouseout="clearActiveProjectType"><span>Research</span></button>
                     <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav1" :key="item?.slug?.current" class="unblur"
                             @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject"
@@ -15,7 +15,7 @@
                 </div>
                 <div v-if="props.navType === 'nav2'" class="dropdown-inner">
                     <button @click="(e) => toggleDropdown(e)" @mouseover="setActiveProjectType('commission')"
-                        @mouseout="clearActiveProjectType">Commissions</button>
+                        @mouseout="clearActiveProjectType"><span>Commissions</span></button>
                     <ul v-if="data" class="dropdown-nav">
                         <li v-for="item in data?.nav2" :key="item?.slug?.current" class="unblur"
                             @mouseover="setActiveProject(item.title, item.location)" @mouseout="clearActiveProject"
@@ -155,26 +155,25 @@ $collapse-bp: 800px;
 
     button {
         display: flex;
+        align-items: flex-end;
     }
 
     button:after {
-        content: "\002D";
+        content: "";
+        background-image: url('/icons/minus.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
         display: flex;
         margin-left: 8px;
-        width: 10px;
+        width: 8px;
+        height: 8px;
+        filter: invert(1);
+        align-self: center;
     }
-
-    // @media (min-width :$collapse-bp) {
-    //     ul {
-    //         display: flex;
-    //         transition: .4s ease-out filter;
-    //         filter: blur(0px);
-    //     }
-    // }
 
     &.collapsed {
         button:after {
-            content: "+";
+            background-image: url('/icons/plus.svg');
         }
     }
 
@@ -208,42 +207,4 @@ $collapse-bp: 800px;
         display: none;
     }
 }
-
-// blur in / out 
-
-// @media (max-width: $collapse-bp) {
-//     .dropdown.collapsed {
-//         ul {
-//             display: none;
-//         }
-//     }
-// }
-
-// @media (min-width: $collapse-bp) {
-
-//     .main-nav {
-//         position: relative;
-//         list-style: none;
-//     }
-
-//     .main-nav li {
-//         cursor: pointer;
-//     }
-
-//     .main-nav li .dropdown.collapsed ul.dropdown-nav {
-//         position: absolute;
-//         height: auto;
-//         filter: blur(200px);
-//         pointer-events: none;
-//         transition: filter 0.4s ease-out 0s;
-//     }
-
-//     .main-nav li .dropdown:not(.collapsed) ul.dropdown-nav {
-//         left: auto;
-//         pointer-events: auto;
-//         filter: blur(0px);
-//         opacity: 1;
-//         transition: filter 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
-//     }
-// }
 </style>

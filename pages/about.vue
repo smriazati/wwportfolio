@@ -6,7 +6,7 @@
       <Meta name="description" :content="data?.seo?.shortDesc" />
       <Meta name="og:img" :content="data?.seo?.img?.url" />
     </Head>
-    <div v-if="data" class="grid">
+    <div v-if="data" class="grid template-about">
       <div class="column">
         <div class="text-wrapper">
           <SanityContent :blocks="data.column1.rte" :serializers="serializers" />

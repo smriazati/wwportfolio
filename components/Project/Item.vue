@@ -7,14 +7,18 @@
         <section v-if="data.latlng?.lat && data.latlng?.lng" class="weather-wrapper">
             <ProjectWeather :data="data.latlng" />
         </section>
-        <section class="description-wrapper">
-            <div class="date-wrapper">
-                <div v-if="data.date">
-                    <p>{{ data.date }}</p>
-                </div>
-            </div>
-            <div class="text-wrapper">
+        <section class="text-wrapper">
+            <div class="description-wrapper">
                 <SanityContent :blocks="data.description?.rte" :serializers="serializers" />
+            </div>
+            <div class="date-wrapper">
+                <ul v-if="data.dateRange">
+                    <li v-for="(item, index) in data.dateRange" :key="index">{{ item }}</li>
+                </ul>
+            </div>
+            <div class="press-wrapper" v-if="data.press">
+                <h3>Press:</h3>
+                <SanityContent :blocks="data.press?.rte" :serializers="serializers" />
             </div>
             <div v-if="data.links" class="links-wrapper">
                 <div v-for="item in data.links" :key="item._key">
@@ -78,7 +82,7 @@ $collapse-bp: 800px;
 
     .title-wrapper,
     .weather-wrapper,
-    .description-wrapper,
+    .text-wrapper,
     .featured-image-wrapper {
         padding: 20px;
     }
@@ -101,7 +105,8 @@ $collapse-bp: 800px;
     .date-wrapper {
         margin-bottom: 25px;
 
-        p {
+        p,
+        li {
             font-family: 'Karl Mono', Arial, Helvetica, sans-serif;
         }
     }
@@ -113,19 +118,24 @@ $collapse-bp: 800px;
         font-family: 'Karl Mono', Arial, Helvetica, sans-serif;
     }
 
-    .description-wrapper {
+    .text-wrapper {
         grid-column: 1 / span 4;
         grid-row: 2 / 3;
+
+        @media (min-width: $collapse-bp) {
+            margin-top: -5px;
+        }
 
         @media (max-width: $collapse-bp) {
             grid-column: 1 / span 7;
         }
 
 
-        .text-wrapper {
-            max-width: 453px;
+    }
 
-        }
+
+    .description-wrapper {
+        max-width: 453px;
     }
 
     .links-wrapper {
@@ -176,7 +186,7 @@ $collapse-bp: 800px;
         margin-top: 335px;
     }
 
-    img {
+    li:not(.full) img {
         max-height: 100vh;
     }
 

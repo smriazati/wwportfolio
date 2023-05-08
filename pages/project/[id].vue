@@ -32,7 +32,8 @@ const projectQuery = `
     "url": img.asset->url,
     "alt": img.asset->altText    }
   },
-  date,
+  dateRange,
+  press,
   links,
   latlng,
   slug,

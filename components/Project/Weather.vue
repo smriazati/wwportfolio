@@ -3,7 +3,7 @@
         <div v-if="weatherData || aqiData" class="row">
             <p v-if="weatherData.current_weather">{{ weatherData.current_weather.temperature }} &#8457;</p>
             <p v-if="weatherData.current_weather">{{ weatherData.current_weather.windspeed }} {{ windspeedDirection }} </p>
-            <p v-if="aqiData.hourly">AQI {{ aqiData.hourly.us_aqi[0] }}</p>
+            <p v-if="aqiData.hourly">{{ aqiData.hourly.us_aqi[0] }} AQI</p>
         </div>
     </div>
 </template>
@@ -60,6 +60,6 @@ if (process.client) {
 }
 
 .row>* {
-    margin-right: 2ch;
+    margin-right: 3ch;
 }
 </style>
