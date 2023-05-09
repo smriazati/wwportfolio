@@ -16,7 +16,7 @@
                     <li v-for="(item, index) in data.dateRange" :key="index">{{ item }}</li>
                 </ul>
             </div>
-            <div class="press-wrapper" v-if="data.press">
+            <div class="press-wrapper" v-if="data.press?.rte">
                 <h3>Press:</h3>
                 <SanityContent :blocks="data.press?.rte" :serializers="serializers" />
             </div>
