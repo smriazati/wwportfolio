@@ -144,7 +144,7 @@ main {
     }
 
     .header-wrapper:not(.header-fixed-bottom) .dropdown ul {
-        padding-top: 42px;
+        padding-top: 24px;
     }
 }
 

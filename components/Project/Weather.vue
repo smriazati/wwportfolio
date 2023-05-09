@@ -67,6 +67,7 @@ p {
 .degree-symbol {
     margin-left: 1ch;
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
 
     img {
