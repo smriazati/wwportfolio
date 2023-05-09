@@ -1,7 +1,8 @@
 <template>
     <div>
         <div v-if="weatherData || aqiData" class="row">
-            <p v-if="weatherData.current_weather">{{ weatherData.current_weather.temperature }} &#8457;</p>
+            <p v-if="weatherData.current_weather">{{ weatherData.current_weather.temperature }} <span
+                    class="degree-symbol"><img src="/icons/degree.svg" alt="degree symbol">F</span></p>
             <p v-if="weatherData.current_weather">{{ weatherData.current_weather.windspeed }} {{ windspeedDirection }} </p>
             <p v-if="aqiData.hourly">{{ aqiData.hourly.us_aqi[0] }} AQI</p>
         </div>
@@ -54,9 +55,23 @@ if (process.client) {
 
 
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .row {
     display: flex;
+}
+
+p {
+    display: flex;
+}
+
+.degree-symbol {
+    margin-left: 1ch;
+    display: flex;
+    align-items: flex-start;
+
+    img {
+        margin-top: 4px;
+    }
 }
 
 .row>* {
