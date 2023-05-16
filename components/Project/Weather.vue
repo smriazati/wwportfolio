@@ -1,10 +1,21 @@
 <template>
     <div>
         <div v-if="weatherData || aqiData" class="row">
-            <p v-if="weatherData.current_weather">{{ weatherData.current_weather.temperature }} <span
-                    class="degree-symbol"><img src="/icons/degree.svg" alt="degree symbol">F</span></p>
-            <p v-if="weatherData.current_weather">{{ weatherData.current_weather.windspeed }} {{ windspeedDirection }} </p>
-            <p v-if="aqiData.hourly">{{ aqiData.hourly.us_aqi[0] }} AQI</p>
+            <p v-if="weatherData.current_weather">
+                <span> {{ weatherData.current_weather.temperature }}</span>
+                <span> <img src="/icons/degree.svg" alt="degrees Fahrenheit symbol">
+                </span>
+            </p>
+            <p v-if="weatherData.current_weather">
+                <span>
+                    {{ weatherData.current_weather.windspeed }}
+                </span>
+                <span>{{ windspeedDirection }}</span>
+            </p>
+            <p v-if="aqiData.hourly">
+                <span>{{ aqiData.hourly.us_aqi[0] }}</span>
+                <span>AQI</span>
+            </p>
         </div>
     </div>
 </template>
@@ -62,18 +73,13 @@ if (process.client) {
 
 p {
     display: flex;
-}
 
-.degree-symbol {
-    margin-left: 1ch;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-
-    img {
-        margin-top: 4px;
+    >*:last-child {
+        margin-left: 1ch;
     }
 }
+
+
 
 .row>* {
     margin-right: 3ch;

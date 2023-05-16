@@ -39,7 +39,7 @@ const initMenuAnimation = () => {
                     pin: true,
                     pinSpacing: false,
                     end: () => `+=${window.innerHeight / 2}`,
-                    scrub: 1.1,
+                    scrub: 1.3,
                     invalidateOnRefresh: true,
                     // markers: true,
                     onEnter() {
