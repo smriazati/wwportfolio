@@ -171,6 +171,9 @@ main {
     }
 }
 
+.home-layout {
+    background-color: #fff;
+}
 
 /* toggle bg color on home page */
 .home-layout {

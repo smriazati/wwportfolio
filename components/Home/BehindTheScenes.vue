@@ -75,6 +75,7 @@ const toggleBgColor = () => {
 }
 
 onMounted(() => {
+    refreshScrollTrigger()
     ScrollTrigger.create({
         trigger: panel.value,
         start: `top+=500px bottom`,
@@ -84,7 +85,7 @@ onMounted(() => {
 
     timer.value = setTimeout(() => {
         refreshScrollTrigger()
-    }, 100);
+    }, 500);
 });
 
 onUnmounted(() => {
