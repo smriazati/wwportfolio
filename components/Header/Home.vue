@@ -60,7 +60,7 @@ const initMenuAnimation = () => {
 }
 
 const resizeFunctions = () => {
-    checkForMobile();
+    // checkForMobile();
 }
 onMounted(() => {
     checkForMobile();
