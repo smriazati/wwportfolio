@@ -65,7 +65,13 @@ const resizeFunctions = () => {
 onMounted(() => {
     checkForMobile();
     window.addEventListener('resize', resizeFunctions)
-    initMenuAnimation();
+    const isTouchDevice = (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+    console.log('touch', isTouchDevice)
+    if (!isTouchDevice) {
+        initMenuAnimation();
+    }
 });
 
 onUnmounted(() => {
