@@ -64,10 +64,10 @@ const resizeFunctions = () => {
 }
 onMounted(() => {
     checkForMobile();
-    window.addEventListener('resize', resizeFunctions)
+    // window.addEventListener('resize', resizeFunctions)
     const isTouchDevice = (('ontouchstart' in window) ||
         (navigator.maxTouchPoints > 0) ||
-        (navigator.msMaxTouchPoints > 0));
+        (navigator.msMaxTouchPoints > 0)) || (window.innerWidth < 800);
     console.log('touch', isTouchDevice)
     if (!isTouchDevice) {
         initMenuAnimation();
@@ -75,14 +75,14 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    window.removeEventListener('resize', resizeFunctions)
+    // window.removeEventListener('resize', resizeFunctions)
     ctx.value.revert();
 });
 
 
 
 </script>
-<style>
+<style lang="scss">
 .header-wrapper.gsap-wrapper:not(.header-fixed-bottom) .grid>*:first-child {
     align-self: start
 }
