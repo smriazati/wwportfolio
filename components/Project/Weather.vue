@@ -69,6 +69,16 @@ if (process.client) {
 <style lang="scss" scoped>
 .row {
     display: flex;
+
+    @media (max-width: $collapse-bp) {
+        justify-content: space-between;
+    }
+
+    @media (max-width: 460px) {
+        flex-direction: column;
+        text-align: right;
+        align-items: flex-end;
+    }
 }
 
 p {
@@ -82,6 +92,9 @@ p {
 
 
 .row>* {
-    margin-right: 3ch;
+    @media (min-width: $collapse-bp) {
+        margin-right: 3ch;
+
+    }
 }
 </style>

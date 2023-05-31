@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <div class="press-wrapper" v-if="data.press?.rte">
-                <h3>Press:</h3>
+                <h3>Press</h3>
                 <SanityContent :blocks="data.press?.rte" :serializers="serializers" />
             </div>
             <div v-if="data.links" class="links-wrapper">
@@ -127,7 +127,7 @@ $collapse-bp: 800px;
         }
 
         @media (max-width: $collapse-bp) {
-            grid-column: 1 / span 7;
+            grid-column: 1 / span 8;
         }
 
 
@@ -210,5 +210,9 @@ $collapse-bp: 800px;
     .full {
         grid-column: span 8;
     }
+}
+
+.press-wrapper h3 {
+    font-family: 'Karl Mono', Arial, Helvetica, sans-serif;
 }
 </style>

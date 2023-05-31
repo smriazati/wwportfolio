@@ -76,6 +76,7 @@ onMounted(() => {
 
 onUnmounted(() => {
     // window.removeEventListener('resize', resizeFunctions)
+    if (!ctx.value) { return }
     ctx.value.revert();
 });
 
