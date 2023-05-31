@@ -249,3 +249,7 @@ main {
     padding-left: 22px;
     text-indent: -22px;
 }
+
+.template-projects .header-wrapper.header-fixed-bottom .inner-dropdown-container {
+    bottom: 34px;
+}
