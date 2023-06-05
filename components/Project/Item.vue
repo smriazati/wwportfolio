@@ -87,6 +87,12 @@ $collapse-bp: 800px;
         padding: 20px;
     }
 
+    @media (max-width: $collapse-bp) {
+        .title-wrapper {
+            padding-right: 0;
+        }
+    }
+
     .featured-image-wrapper {
         @media (min-width: $collapse-bp) {
             padding-left: 0px;

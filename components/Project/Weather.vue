@@ -6,7 +6,7 @@
                 <span> <img src="/icons/degree.svg" alt="degrees Fahrenheit symbol">
                 </span>
             </p>
-            <p v-if="weatherData.current_weather">
+            <p v-if="weatherData.current_weather" class="hide-on-mobile">
                 <span>
                     {{ weatherData.current_weather.windspeed }}
                 </span>
@@ -69,16 +69,16 @@ if (process.client) {
 <style lang="scss" scoped>
 .row {
     display: flex;
+    flex-wrap: wrap;
 
     @media (max-width: $collapse-bp) {
-        justify-content: space-between;
+        justify-content: flex-end;
+
+        p:last-child {
+            margin-left: 1ch;
+        }
     }
 
-    @media (max-width: 460px) {
-        flex-direction: column;
-        text-align: right;
-        align-items: flex-end;
-    }
 }
 
 p {
@@ -95,6 +95,12 @@ p {
     @media (min-width: $collapse-bp) {
         margin-right: 3ch;
 
+    }
+}
+
+.hide-on-mobile {
+    @media (max-width: $collapse-bp) {
+        display: none;
     }
 }
 </style>

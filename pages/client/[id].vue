@@ -3,7 +3,7 @@
     <Suspense>
       <div class="client-page">
         <header class="client-title-wrapper">
-          <h2>Selected work</h2>
+          <h2>Selected Work</h2>
           <h1 v-if="data.title">{{ data.title }}</h1>
         </header>
         <div>
