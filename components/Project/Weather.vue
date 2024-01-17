@@ -84,9 +84,9 @@ if (process.client) {
 p {
     display: flex;
 
-    >*:last-child {
-        margin-left: 1ch;
-    }
+    // >*:last-child {
+    //     margin-left: 1ch;
+    // }
 }
 
 
