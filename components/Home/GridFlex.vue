@@ -70,7 +70,6 @@ const query = `
 }[0]
 `
 const { data } = await useSanityQuery(query);
-
 const activeProjectStore = useActiveProjectStore()
 
 function setActiveProject(title, location) {
