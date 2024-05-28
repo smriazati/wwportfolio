@@ -1,27 +1,30 @@
 <template>
     <div>
         <ul v-if="data?.grid" ref="grid" class="home-grid-items-blur">
-            <li v-for="item in data.grid" v-bind:key="item.item?.slug?.current" :class="`unblur`"
-                :data-title="item.item?.title" :data-location="item.item?.location"
-                :data-type="item._type === 'single' ? 'single' : item.item?.type === 'research' ? 'research' : (item.item?.type === 'commission' ? 'commission' : 'commission')">
+            <li v-for="item in data.grid" v-bind:key="item.slug?.current" :class="`unblur`" :data-title="item._id"
+                :data-location="item.location"
+                :data-type="item._type === 'single' ? 'single' : item.type === 'research' ? 'research' : (item.type === 'commission' ? 'commission' : 'commission')">
                 <div v-if="item" class="image-wrapper">
                     <template v-if="item._type === 'single'">
-                        <img :src="$urlFor(item?.url).width(1500).format('webp').url()" :alt="item?.altText" />
+                        <div @mouseover="setActiveProject(item.title, item.location, item._id)"
+                            @mouseout="clearActiveProject">
+                            <img :src="$urlFor(item?.url).width(1500).format('webp').url()" :alt="item?.altText" />
+                        </div>
                     </template>
                     <template v-else>
-                        <NuxtLink v-if="item.item._type === 'project' || item.item._type === 'client'"
-                            :to="`/${item.item._type === 'project' ? 'project' : 'client'}/${item.item.slug?.current}`">
-                            <div @mouseover="setActiveProject(item.item.title, item.item.location)"
+                        <NuxtLink v-if="item._type === 'project' || item._type === 'client'"
+                            :to="`/${item._type === 'project' ? 'project' : 'client'}/${item.slug?.current}`">
+                            <div @mouseover="setActiveProject(item.title, item.location, item._id)"
                                 @mouseout="clearActiveProject">
                                 <img v-if="item.customTnail"
                                     :src="$urlFor(item.customTnail.url).width(1500).format('webp').url()"
                                     :alt="item.customTnail.altText" />
-                                <img v-else-if="item.item.featured && item.item.featured.url"
-                                    :src="$urlFor(item.item.featured.url).width(1500).format('webp').url()"
+                                <img v-else-if="item.featured && item.featured.url"
+                                    :src="$urlFor(item.featured.url).width(1500).format('webp').url()"
                                     :alt="item.customTnail?.alt" />
-                                <img v-else-if="item.item.firstProject && item.item.firstProject.img && item.item.firstProject.img.url"
-                                    :src="$urlFor(item.item.firstProject.img.url).width(1500).format('webp').url()"
-                                    :alt="item.item.firstProject.img.altText" />
+                                <img v-else-if="item.firstProject && item.firstProject.img && item.firstProject.img.url"
+                                    :src="$urlFor(item.firstProject.img.url).width(1500).format('webp').url()"
+                                    :alt="item.firstProject.img.altText" />
                             </div>
                         </NuxtLink>
                     </template>
@@ -37,43 +40,47 @@
 import { useActiveProjectStore } from '@/stores/activeProject'
 
 
-const projectQuery = `
-_type,
-"featured": {
-  "url": featured.asset->url,
-  "alt": featured.asset->altText
-},
-slug,
-location,
-title,
-type,
-"firstProject": projects[0]->{
-     "img": featured.asset->{url, altText}
-}
-`
-
 const query = `
 *[_type == "homePage"]{
     "grid": grid[]{
-        _type == "single" => {
+       _type == "single" => {
             _type,
+            "_id": _key, 
             "url": img.asset->url,
-            "alt": img.asset->altText
+            "alt": img.asset->altText,
+            location,
+            title
         },
-        _type == "projectGridItem" => {
-            item->{
-           ${projectQuery}
-        },
-        "customTnail": tnail_custom.asset->{url, altText}
+ _type == "projectGridItem" => {
+      "_type": item->_type,
+      "_id": item->_id,
+      "featured": item->featured.asset->{
+        "url": url,
+        "alt": altText
+      },
+      "customTnail": tnail_custom.asset->{
+        "url": url,
+        "altText": altText
+      },
+      "slug": item->slug,
+      "location": item->location,
+      "title": item->title,
+      "type": item->type,
+      "firstProject": item->projects[0]->{
+        "img": featured.asset->{
+          "url": url,
+          "altText": altText
         }
+      }
+    }
     }
 }[0]
 `
 const { data } = await useSanityQuery(query);
 const activeProjectStore = useActiveProjectStore()
 
-function setActiveProject(title, location) {
-    activeProjectStore.setActiveProject(title, location)
+function setActiveProject(title, location, _id) {
+    activeProjectStore.setActiveProject(title, location, _id)
 }
 
 function clearActiveProject() {
@@ -84,10 +91,10 @@ const grid = ref()
 const blurredList = ref(null)
 
 watch(activeProjectStore.activeProject, () => {
-    const title = activeProjectStore.activeProject?.title;
-    if (title) {
+    const id = activeProjectStore.activeProject?._id;
+    if (id) {
         if (!grid.value) { return }
-        blurredList.value = grid.value.querySelectorAll(`li:not([data-title="${title}"])`);
+        blurredList.value = grid.value.querySelectorAll(`li:not([data-title="${id}"])`);
         if (!blurredList.value) { return }
         blurredList.value.forEach((item) => {
             item.classList.add('blur')
