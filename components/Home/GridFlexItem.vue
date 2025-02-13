@@ -19,6 +19,8 @@
 import { useActiveProjectStore } from '@/stores/activeProject';
 import { computed } from 'vue';
 
+
+
 const props = defineProps({
     item: Object
 });
@@ -34,11 +36,19 @@ function clearActiveProject() {
 }
 
 
-
 const gridItemType = computed(() => {
     if (props.item._type === 'single') return 'single';
     return props.item.type === 'research' ? 'research' : 'commission';
 });
+
+
+const width = computed(() => {
+    if (props.item.width !== null && props.item._type !== 'single') {
+        return `${props.item.width}vw`;
+    }
+    return '35vw';
+});
+
 
 const gridItemSize = computed(() => {
     if (gridItemType.value === 'single') {
@@ -47,12 +57,10 @@ const gridItemSize = computed(() => {
         return size !== undefined ? `${size}vw` : '35vw';
     }
 
-    if (gridItemType.value === 'research') {
-        return '60vw'
+    if (props.item.width !== undefined) {
+        return `${props.item.width}vw`;
     }
-    if (gridItemType.value === 'commission') {
-        return '25vw'
-    }
+    return '35vw';
 });
 const gridImg = computed(() => {
     let url = '';
@@ -102,8 +110,6 @@ li {
     }
 
     &[data-type="research"] {
-        width: 100%;
-
         .image-wrapper {
             @media (max-width: $collapse-bp) {
                 width: 100% !important;

@@ -33,6 +33,7 @@ const query = `
           "url": url,
           "altText": altText
         },
+        width,
         "slug": item->slug,
         "location": item->location,
         "title": item->title,
