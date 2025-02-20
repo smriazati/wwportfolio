@@ -37,7 +37,10 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ['/404'], // Generate a proper static 404 page
+      routes: ['/404'], // Ensures Netlify recognizes the 404 page
     },
   },
+  generate: {
+    fallback: "404.html", // Helps Netlify use the right file
+  }
 })
