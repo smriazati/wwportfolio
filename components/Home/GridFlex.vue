@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import { ref, watch, onMounted } from 'vue';
 import { useActiveProjectStore } from '@/stores/activeProject';
 import GridFlexItem from '@/components/Home/GridFlexItem.vue';
@@ -53,6 +54,8 @@ const query = `
 
 const { data } = await useSanityQuery(query);
 const activeProjectStore = useActiveProjectStore();
+const router = useRouter();
+
 const grid = ref();
 const blurredList = ref(null);
 
@@ -103,6 +106,14 @@ function removeBlurEffect() {
 watch(() => activeProjectStore.activeProject, applyBlurEffect);
 watch(() => activeProjectStore.activeProjectType, applyBlurEffect);
 onMounted(applyBlurEffect);
+
+// Clear active project when navigating away from the home page
+router.beforeEach((to, from, next) => {
+    if (from.path === '/' && to.path !== '/') {
+        activeProjectStore.clearActiveProject();
+    }
+    next();
+});
 </script>
 
 <style lang="scss" scoped>
