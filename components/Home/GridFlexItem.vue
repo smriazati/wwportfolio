@@ -1,7 +1,7 @@
 <template>
-    <li :class="`unblur`" :data-title="item._id" :data-location="item.location" :data-type="gridItemType">
-        <div v-if="item" class="image-wrapper" :style="`width: ${gridItemSize}`" @mouseover="setActiveProject"
-            @mouseout="clearActiveProject">
+    <li :class="`unblur`" :data-title="item._id" :data-location="item.location" :data-type="gridItemType"
+        :data-item-width="props.item.width || '35'">
+        <div v-if="item" class="image-wrapper" @mouseover="setActiveProject" @mouseout="clearActiveProject">
             <template v-if="item._type === 'single'">
                 <img :src="$urlFor(gridImg.url).width(1500).format('webp').url()" :alt="gridImg.alt" />
             </template>
@@ -42,12 +42,6 @@ const gridItemType = computed(() => {
 });
 
 
-const width = computed(() => {
-    if (props.item.width !== null && props.item._type !== 'single') {
-        return `${props.item.width}vw`;
-    }
-    return '35vw';
-});
 
 
 const gridItemSize = computed(() => {
@@ -88,52 +82,38 @@ const gridImg = computed(() => {
 <style lang="scss" scoped>
 li {
     padding: 0;
+    margin-bottom: 10vh;
+
+    &[data-item-width="25"] {
+
+        width: 25vw;
+    }
+
+    &[data-item-width="35"] {
+        width: 35vw;
+
+    }
+
+    &[data-item-width="60"] {
+        width: 60vw;
+    }
+
+    // possible conditional styles to make more interesting layouts
+    // &[data-item-width="60"]+&[data-item-width="60"] {
+    //     padding-left: 15vw;
+    // }
 
     .image-wrapper {
         padding: 12px;
 
-    }
-
-    margin-bottom: 10vh;
-
-    @media (min-width: $collapse-bp) {
-        margin-bottom: 450px;
-    }
-
-    &[data-type="single"],
-    &[data-type="research"] {
-
-        img {
-            max-height: 100vh;
-            width: auto;
-        }
-    }
-
-    &[data-type="research"] {
-        .image-wrapper {
-            @media (max-width: $collapse-bp) {
-                width: 100% !important;
-            }
-        }
-
-    }
-
-
-
-    &[data-type="commission"] {
-        .image-wrapper {
-            padding-left: 25%;
-
-            @media (max-width: $collapse-bp) {
-                width: 35vw !important;
-                padding-left: 10%;
-            }
-        }
-
-        .image-wrapper::before {
+        &::before {
             content: '';
-            background: green;
+
+            @media (min-width: $collapse-bp) {
+                margin-bottom: 450px;
+            }
         }
+
     }
 
 }
