@@ -2,8 +2,7 @@
     <div class="error-wrapper">
         <HeaderBasic />
         <div class="text-wrapper">
-            <h1>Error</h1>
-            <p>{{ error.message }}</p>
+            <h1>Page not found</h1>
             <nuxt-link to="/">Try going home instead?</nuxt-link>
         </div>
     </div>
@@ -12,7 +11,7 @@
 const props = defineProps({
     error: Object
 })
-const handleError = () => clearError({ redirect: '/' })
+console.log('error', error)
 </script>
 <style>
 .error-wrapper {
